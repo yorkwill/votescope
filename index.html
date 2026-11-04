@@ -577,7 +577,7 @@ let shown=[];function render(){board('house',435,0,0);board('senate',100,34,31);
 function showDetail(i){const r=shown[i];if(!r)return;$('dialogContent').innerHTML=`<div class="eyebrow">2026 · Unofficial returns</div><h3>${esc(nameOf(r))}</h3><div style="margin:6px 0 20px">${badge(r)} <span class="muted">${r.total?fmt(r.total)+' votes':'Votes not reported'}</span></div>${topCandidates(r)}<hr style="border:none;border-top:1px solid #294052;margin:20px 0"><p><strong>Current margin:</strong> ${esc(margin(r))}</p><p><strong>Reported progress:</strong> ${r.pctIn==null?'Not supplied':r.pctIn.toFixed(1)+'% (source-defined reporting unit; not necessarily votes counted)'}</p><p><strong>Race status:</strong> ${esc(v11SourceLabel(r))}</p><p><strong>Source:</strong> ${esc(r.source)}</p><p><strong>Call evidence:</strong> ${r.called?`<a href="${esc(r.callEvidenceUrl||'https://thepeoplestally.com/open-data/')}" target="_blank" rel="noopener">${esc(v11SourceLabel(r))} ↗</a>`:esc(v11SourceLabel(r))}</p><p><strong>Source update:</strong> ${esc(date(r.stamp))}</p><p><a href="${esc(r.srcUrl)}" target="_blank" rel="noopener">Inspect source ↗</a></p><div class="cap">An early lead, or 100% of precincts reported, does not by itself establish a certified result.</div>`;$('detail').classList.add('open');civicAddDetailAction(r)}
 
 /* VoteScope v11: named-source election calls only. No inferred winners. */
-const V11_CALL_FEED='https://thepeoplestally.com/api/live';
+const V11_CALL_FEED='https://raw.githubusercontent.com/yorkwill/votescope/votescope-calls/data/calls.json';
 let v11LiveCalls=[],v11LiveCallAt=null,v11LiveCallErrors=0;
 const v11CivicCalls=new Map();
 const v11APReference='https://apps.npr.org/2026-election-results/';
@@ -658,10 +658,12 @@ function v11ShowCallStatus(){
  const others=called.length-ap-civic;
  const conflicts=all.filter(r=>r.callConflict?.length).length;
  const health=sourceHealth.get(4);
- box.innerHTML=`<div class="v11-call-head"><div><span class="v11-kicker">RACE-CALL MONITOR</span><h3>Attributed race calls</h3></div><span class="v11-feed-state ${health?.error?'bad':'good'}">${health?.error?'Live call feed unavailable':health?.lastSuccess?'Live call feed checked':'Awaiting first call check'}</span></div><div class="v11-call-grid"><div><b>${called.length}</b><span>Source-called House &amp; Senate races</span></div><div><b>${ap}</b><span>AP-attributed (secondary report)</span></div><div><b>${civic}</b><span>civicAPI (verified when opened)</span></div><div><b>${others}</b><span>Other named publishers</span></div></div><div class="v11-call-fine">${conflicts?`<strong>${conflicts} conflicting source reports</strong> excluded from winners. `:''}A call attributed to AP by another publisher is <strong>not</strong> a direct AP API verification. The free AP reference opens separately; it is not an imported AP call feed. <a href="${v11APReference}" rel="noopener" target="_blank">Check AP-sourced published results ↗</a> · <a href="https://thepeoplestally.com/open-data/" rel="noopener" target="_blank">Call feed methodology ↗</a>. Rewind records calls only when this browser observes them.</div>`;
+ const ageMs=health?.sourceAt?Date.now()-new Date(health.sourceAt).getTime():null;
+ const stale=ageMs!==null&&Number.isFinite(ageMs)&&ageMs>25*60000;
+ box.innerHTML=`<div class="v11-call-head"><div><span class="v11-kicker">RACE-CALL MONITOR</span><h3>Attributed race calls</h3></div><span class="v11-feed-state ${health?.error||stale?'bad':'good'}">${health?.error?'Call relay unavailable':stale?'Call relay stale':health?.lastSuccess?'Call relay checked':'Awaiting first relay check'}</span></div><div class="v11-call-grid"><div><b>${called.length}</b><span>Source-called House &amp; Senate races</span></div><div><b>${ap}</b><span>AP-attributed (secondary report)</span></div><div><b>${civic}</b><span>civicAPI (verified when opened)</span></div><div><b>${others}</b><span>Other named publishers</span></div></div><div class="v11-call-fine">${conflicts?`<strong>${conflicts} conflicting source reports</strong> excluded from winners. `:''}A call attributed to AP by another publisher is <strong>not</strong> a direct AP API verification. The free AP reference opens separately; it is not an imported AP call feed. <a href="${v11APReference}" rel="noopener" target="_blank">Check AP-sourced published results ↗</a> · <a href="https://thepeoplestally.com/open-data/" rel="noopener" target="_blank">Call feed methodology ↗</a>. The relay checks the original source approximately every five minutes when GitHub Actions runs; GitHub scheduling or caching can introduce delays. Rewind records calls only when this browser observes them.</div>`;
 }
 
-const sourceNames=['2026 race roster','The People’s Tally','Open America House','Open America Senate','The People’s Tally live call data'];
+const sourceNames=['2026 race roster','The People’s Tally','Open America House','Open America Senate','VoteScope call relay (named sources)'];
 const sourceUrls=['https://thepeoplestally.com/data/core.json','https://thepeoplestally.com/data/results.json','https://openamerica.io/elections/results.json?year=2026&office=House','https://openamerica.io/elections/results.json?year=2026&office=Senate',V11_CALL_FEED];
 const resultFeedCache=new Map(),sourceHealth=new Map();
 function updateSourceLedger(){
@@ -688,7 +690,7 @@ async function update(){
  if(freshResults){
   const combined=new Map(roster.map(x=>[x.key,x]));for(const x of live)combined.set(x.key,x);
   races=v11OverlayCalls([...combined.values()].filter(x=>x.office==='H'||x.office==='S'));computeDelta(races);lastOk=new Date();
-  $('feedStatus').textContent=`Results checked · ${freshResults} vote feeds responding · ${sourceHealth.get(4)?.error?'call feed unavailable':sourceHealth.get(4)?.lastSuccess?'call feed checked':'call feed unchecked'}`;
+  $('feedStatus').textContent=`Results checked · ${freshResults} vote feeds responding · ${sourceHealth.get(4)?.error?'call relay unavailable':sourceHealth.get(4)?.lastSuccess?'call relay checked':'call relay unchecked'}`;
   const newest=[...races].map(x=>Date.parse(x.stamp)).filter(Number.isFinite).sort((a,b)=>b-a)[0];
   $('meta').textContent=`${races.length} races in roster and connected feeds · ${races.filter(x=>x.total>0).length} reporting votes · ${newest?'Newest source timestamp '+date(newest):'No source vote timestamp available'}`;
   $('checked').textContent='Checked '+date(lastOk);render();v11ShowCallStatus();
