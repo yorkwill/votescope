@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="theme-color" content="#f6f5f1"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%228%22%20fill%3D%22%23122430%22/%3E%3Cpath%20d%3D%22M11%2017h10l10%2024%2010-24h10L35%2051h-8z%22%20fill%3D%22%23f6f5f1%22/%3E%3Ccircle%20cx%3D%2253%22%20cy%3D%2249%22%20r%3D%226%22%20fill%3D%22%23bb4845%22/%3E%3C/svg%3E"><meta property="og:title" content="VoteScope — Live U.S. Election Returns"><meta property="og:description" content="Live 2026 U.S. election results, congressional balance of power, and historical swings. An independent project by Will York."><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light"><meta name="description" content="VoteScope by Will York: U.S. House, Senate and governor results, directional movement meters, 2022/2024 swing comparisons, DSA-backed candidates and balance-of-power tracking."><title>VoteScope | Live U.S. Election Returns — Will York</title>
+<meta charset="utf-8"/><meta content="#f6f5f1" name="theme-color"/><link href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%228%22%20fill%3D%22%23122430%22/%3E%3Cpath%20d%3D%22M11%2017h10l10%2024%2010-24h10L35%2051h-8z%22%20fill%3D%22%23f6f5f1%22/%3E%3Ccircle%20cx%3D%2253%22%20cy%3D%2249%22%20r%3D%226%22%20fill%3D%22%23bb4845%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/><meta content="VoteScope — Live U.S. Election Returns" property="og:title"/><meta content="Live 2026 U.S. election results, congressional balance of power, and historical swings. An independent project by Will York." property="og:description"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="light" name="color-scheme"/><meta content="VoteScope by Will York: live U.S. elections, 2022/2024 historical swing charts, personal watchlist, civicAPI verification, replay and DSA endorsements." name="description"/><title>VoteScope | Live U.S. Election Returns — Will York</title>
 <style>
 :root{--bg:#09111c;--panel:#101f30;--panel2:#14283c;--line:#294052;--muted:#9db2c6;--ink:#f5f9fe;--blue:#4b9bf5;--red:#f16b69;--other:#e3b665;--good:#67d5b0;--shadow:0 12px 36px #0003}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 5% -10%,#16395b 0,transparent 43%),var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px}a{color:#9ecfff}a:hover{text-decoration:underline}.wrap{max-width:1400px;margin:auto;padding:26px 24px 65px}header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}header h1{font-size:clamp(28px,4vw,39px);margin:6px 0 7px;letter-spacing:-.055em;font-weight:790}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8fc7ef;font-weight:800}.sub{color:var(--muted);line-height:1.5}.live{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:50px;background:#12354a;border:1px solid #2f6578;color:#bfe9fb;font-weight:750;font-size:12px}.dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px #67d5b02b;animation:pulse 1.7s infinite}@keyframes pulse{50%{opacity:.45}}.controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn,.pick,.search{font:inherit;border:1px solid var(--line);color:var(--ink);background:var(--panel2);border-radius:9px;padding:10px 12px}.btn{cursor:pointer;font-weight:710}.btn:hover{background:#23415c}.btn:disabled{opacity:.5;cursor:default}.btn.primary{background:#285581;border-color:#32709b}.small{font-size:12px}.muted{color:var(--muted)}.banner{border:1px solid var(--line);border-radius:12px;background:#102336c9;padding:13px 16px;margin-bottom:22px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;line-height:1.55}.error{color:#ffd6ab}.row{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap}.board{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{border:1px solid var(--line);background:linear-gradient(140deg,#13263a,#0f1d2d);border-radius:16px;box-shadow:var(--shadow);padding:21px}.panel h2{margin:0 0 4px;font-size:20px;letter-spacing:-.03em}.cap{font-size:12px;color:var(--muted)}.bar{height:17px;border-radius:5px;overflow:hidden;background:#26384a;display:flex;margin:22px 0 11px}.bar .d{background:var(--blue)}.bar .r{background:var(--red)}.bar .o{background:var(--other)}.partygrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:11px}.partystat{padding:11px;background:#0c1825aa;border-radius:11px}.statlabel{font-size:12px;color:var(--muted);margin-bottom:5px}.big{font-size:29px;font-weight:830;line-height:1.2;font-variant-numeric:tabular-nums}.blue{color:var(--blue)}.red{color:var(--red)}.yellow{color:var(--other)}.green{color:var(--good)}.sectop{display:flex;align-items:end;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:30px;margin-bottom:14px}.sectop h2{margin:0;font-size:23px;letter-spacing:-.035em}.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.search{flex:1;min-width:180px}.pick{min-width:110px}.pill{border:1px solid #39566d;border-radius:99px;padding:5px 9px;color:#b8d3e6;background:#152e40;font-size:11px;white-space:nowrap}.pill.called{background:#214a3b;color:#96ead0;border-color:#38816e}.pill.leading{color:#ffe6b0;border-color:#8a714a;background:#41351f}.pill.empty{color:#aabccc;background:#172533}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.race{cursor:pointer;text-align:left;width:100%;color:var(--ink);border:1px solid var(--line);background:#102238;border-radius:13px;padding:16px;transition:transform .12s,border-color .12s}.race:hover{transform:translateY(-2px);border-color:#659cbe}.racehead{display:flex;justify-content:space-between;gap:9px;align-items:start;margin-bottom:13px}.racename{font-size:15px;font-weight:800}.cand{display:grid;grid-template-columns:16px minmax(0,1fr) auto auto;gap:9px;align-items:center;margin:9px 0;font-size:13px}.cand .partykey{width:11px;height:11px;border-radius:50%;background:var(--other)}.cand .partykey.D{background:var(--blue)}.cand .partykey.R{background:var(--red)}.cand .votes{font-variant-numeric:tabular-nums;color:#cfdae5}.cand .pct{font-weight:800;font-variant-numeric:tabular-nums;min-width:48px;text-align:right}.minibar{height:6px;display:flex;border-radius:6px;overflow:hidden;background:#253648;margin:12px 0 8px}.minibar span{height:100%}.racefoot{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;color:var(--muted);font-size:11px}.detail{display:none;position:fixed;inset:0;z-index:4;background:#000b;padding:22px;align-items:center;justify-content:center}.detail.open{display:flex}.dialog{width:min(620px,100%);max-height:88vh;overflow:auto;background:#102238;border:1px solid #37546b;border-radius:17px;box-shadow:0 20px 80px #0008;padding:24px}.dialog h3{font-size:23px;margin:0 0 8px}.x{float:right}.sourcebox{border:1px solid var(--line);border-radius:12px;padding:13px 17px;margin-top:22px;background:#102033;line-height:1.55}.countdown{color:#aee4dd;font-variant-numeric:tabular-nums}.emptybox{padding:36px 22px;border:1px dashed #406079;border-radius:13px;text-align:center;color:var(--muted);line-height:1.6}.foot{font-size:11px;color:#8ca5ba;margin-top:21px;line-height:1.6}.foot a{color:#a6cee7}.pop{margin-top:7px;font-size:12px;color:var(--muted)}@media(max-width:800px){.wrap{padding:18px 12px}.board,.cards{grid-template-columns:1fr}.panel{padding:17px}header{gap:9px}.filters>*{flex:1}.big{font-size:25px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 
@@ -210,126 +211,250 @@ header .sub{color:#47555d;margin-top:14px;font-size:14px;line-height:1.65}.sub-d
 .civic-note{margin-top:10px;color:var(--muted);font-size:11px;line-height:1.55}
 @media(max-width:850px){.civic-controls{grid-template-columns:1fr 1fr}.civic-controls button{grid-column:1/-1}.civic-head{flex-wrap:wrap}}
 
+
+/* VoteScope v7 — restrained integrated source and watchlist components */
+.v7-watch-section{margin:17px 0 31px;border-top:4px solid #233c49;border-bottom:1px solid #ccd5d8;padding:18px 0 21px}
+.v7-watch-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:14px}
+.v7-watch-head h2{font:700 clamp(24px,3vw,32px)/1.2 Georgia,serif;letter-spacing:-.035em;margin:3px 0 4px}
+.v7-watch-sub{font-size:12px;line-height:1.5;color:var(--muted)}
+.v7-watch-actions{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.v7-watch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.v7-watch-tile{background:#fff;border:1px solid #d4dcdf;padding:14px 14px 12px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.v7-watch-tile-top{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.v7-watch-racename{background:transparent;border:0;text-align:left;font-weight:800;font-size:14px;color:#223f4f;text-decoration:underline;text-decoration-color:#bacbd3;text-underline-offset:3px;cursor:pointer;padding:0}
+.v7-watch-metrics{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.v7-watch-stat{border-top:1px solid #dfe5e6;padding-top:8px;min-width:0}
+.v7-watch-stat small{display:block;font-size:10px;line-height:1.4;color:#69808b;margin-bottom:5px}
+.v7-watch-stat strong{font-size:14px;font-variant-numeric:tabular-nums}
+.v7-watch-footer{display:flex;justify-content:space-between;gap:9px;align-items:center;color:#5e7580;font-size:11px;flex-wrap:wrap;margin-top:auto}
+.v7-watch-unpin,.v7-pin{background:#f7f8f7;border:1px solid #d5dde0;cursor:pointer;color:#537080;font-size:13px;padding:4px 8px;line-height:1.2}
+.v7-pin{position:absolute;right:13px;bottom:13px;z-index:1;font-size:15px;min-width:35px;min-height:30px}
+.v7-pin[aria-pressed=true],.v7-watch-unpin:hover{color:#785821;background:#fff5d8;border-color:#e0cd90}
+.v7-race-frame{position:relative;min-width:0}
+.v7-race-frame>.race{height:100%;padding-bottom:48px}
+.v7-race-frame .v7-inline-note{color:#42627a;margin-top:8px;font-size:11px;font-weight:700;line-height:1.4}
+.v7-watch-empty{border:1px dashed #bccbd1;padding:22px 19px;color:#536e7d;font-size:12px;line-height:1.65;background:#fff}
+.v7-watch-mini{display:inline-block;border:1px solid #cbd6dc;padding:3px 6px;font-size:10px;background:#f3f6f7;color:#456274}
+.v7-source-status{border:1px solid #d9e1e3;background:#f4f6f6;padding:13px 14px;margin:15px 0 10px;color:#344d5b;font-size:12px;line-height:1.55}
+.v7-source-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.v7-status-ok{color:#22765c;font-weight:800}.v7-status-bad{color:#9e5b35;font-weight:800}.v7-status-muted{color:#637d89}
+.v7-compare-table{width:100%;border-collapse:collapse;font-size:12px;margin:9px 0 7px}
+.v7-compare-table th,.v7-compare-table td{padding:8px;border-bottom:1px solid #dbe3e5;text-align:right;font-variant-numeric:tabular-nums}
+.v7-compare-table th:first-child,.v7-compare-table td:first-child{text-align:left}
+.v7-compare-table th{font-size:10px;color:#627984;letter-spacing:.06em;text-transform:uppercase}
+.v7-inline-trend{padding:17px 0;border-top:1px solid #d5dfe1;margin-top:15px}
+.v7-inline-trend h4{margin:0 0 7px;font-family:Georgia,serif;font-size:17px;letter-spacing:-.025em}
+.v7-chart-line{display:grid;grid-template-columns:112px minmax(0,1fr) 72px;gap:9px;align-items:center;padding:8px 0}
+.v7-chart-line small{color:#607985;font-size:11px;line-height:1.3}
+.v7-chart-bar{height:12px;position:relative;border:1px solid #d5dfe3;background:linear-gradient(90deg,#dce7f3 0 50%,#eedfdf 50% 100%)}
+.v7-chart-bar::before{content:'';position:absolute;left:50%;top:-4px;height:18px;width:1px;background:#4e6471}
+.v7-chart-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:10px;height:17px;background:#172c3a;border:1px solid #fff}
+.v7-chart-line strong{text-align:right;font-size:12px;font-variant-numeric:tabular-nums}
+.v7-insight-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px}
+.v7-insight{border:1px solid #d9e1e3;padding:10px;background:#f7f8f7}
+.v7-insight small{display:block;color:#627981;font-size:10px;line-height:1.5;margin-bottom:4px}
+.v7-insight strong{font-size:16px;font-variant-numeric:tabular-nums}
+.v7-explainer{color:#6a7d86;line-height:1.6;font-size:11px;margin-top:11px}
+.v7-advanced-label{font-weight:750;font-size:12px;color:#355d73}
+.v7-advanced-note{font-size:11px;color:#657b86;margin:8px 0}
+.v7-advanced-source{border-top:1px solid #d3dde0;padding-top:15px;margin-top:10px}
+.v7-watch-toolbar-label{color:#6b8088;font-size:11px}
+.v7-info-d{color:#2c6fa6}.v7-info-r{color:#b6534b}
+@media(max-width:1050px){.v7-watch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.v7-watch-grid,.v7-insight-row{grid-template-columns:1fr}.v7-chart-line{grid-template-columns:95px 1fr 58px}.v7-watch-actions{width:100%}.v7-watch-head{align-items:start}}
+
+
+/* VoteScope v8 — map-first editorial dashboard. */
+.performance,.historical{display:none!important}
+.vs8-mapdesk{margin:19px 0 24px;border-top:4px solid #203949;border-bottom:1px solid #cbd3d3;padding:19px 0 26px;scroll-margin-top:12px}
+.vs8-title-row{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:19px}
+.vs8-title-row h2{font:700 clamp(32px,4.4vw,50px)/1.08 Georgia,'Times New Roman',serif;color:#1b3240;letter-spacing:-.045em;margin:3px 0 7px}
+.vs8-title-row h2 em{font-style:italic;font-weight:400;color:#36668c}
+.vs8-title-row p{margin:0;color:#67777d;font-size:12px;line-height:1.5;max-width:680px}
+.vs8-live{font-size:10px;letter-spacing:.055em;font-weight:800;color:#517183;background:#edf1f1;border:1px solid #d5dfdf;padding:9px 12px;white-space:nowrap}
+.vs8-map-toolbar{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:12px}
+.vs8-map-toolbar label{display:flex;flex-direction:column;gap:5px;font-size:10px;text-transform:uppercase;font-weight:800;letter-spacing:.09em;color:#65757b}
+.vs8-map-toolbar select{min-width:185px;max-width:300px;font-size:12px;letter-spacing:normal;text-transform:none}
+.vs8-map-toolbar button{margin-bottom:0}
+.vs8-map-grid{display:grid;grid-template-columns:minmax(0,1.72fr) minmax(270px,.75fr);gap:0;border:1px solid #ccd5d6;background:#fff;min-width:0}
+.vs8-map-primary{min-width:0;padding:17px 17px 13px;border-right:1px solid #d7dfdf}
+.vs8-map-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#697881;font-size:11px;font-weight:700}
+.vs8-svg-shell{margin:10px 0 0;position:relative;min-height:340px}
+.vs8-svg-shell svg{display:block;width:100%;max-height:510px;overflow:visible}
+.vs8-map-state{cursor:pointer;stroke:#fff;stroke-width:1.3;transition:fill .25s,stroke .2s}
+.vs8-map-state:hover{stroke:#243b48;stroke-width:2.6;filter:brightness(.96)}
+.vs8-map-state.selected{stroke:#132f40;stroke-width:3.1}
+.vs8-map-state:focus{outline:none;stroke:#131f2d;stroke-width:3.2}
+.vs8-map-label{font:700 13px Inter,Arial,sans-serif;letter-spacing:.02em;pointer-events:none;fill:#203a49;text-anchor:middle}
+.vs8-legend{display:flex;gap:9px;align-items:center;justify-content:space-between;font-size:10px;font-weight:800;color:#5e717b;margin-top:6px}
+.vs8-legend-swatch{height:9px;flex:1;max-width:230px;background:linear-gradient(90deg,#286bb0,#cbd9e4,#eceeec,#ead1d0,#c04a46)}
+.vs8-coverage-note{color:#596d76;font-size:11px;line-height:1.55;margin:11px 0 0}
+.vs8-map-credit{color:#78888e;font-size:10px;line-height:1.5;margin:6px 0 0}
+.vs8-map-sidebar{padding:26px 22px;min-width:0;display:flex;flex-direction:column}
+.vs8-summary-kicker,.vs8-state-kicker{color:#64818e;font-size:10px;letter-spacing:.14em;font-weight:900}
+.vs8-summary-number{font:700 clamp(30px,3vw,45px)/1.17 Georgia,serif;color:#243b4a;margin:12px 0 4px;letter-spacing:-.04em}
+.vs8-summary-number.d,.vs8-focus-value.d{color:#2d6cb0}.vs8-summary-number.r,.vs8-focus-value.r{color:#bb4845}
+.vs8-summary-description{color:#62737b;font-size:12px;line-height:1.55;min-height:55px}
+.vs8-data-strip{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#dce1df;margin:19px 0}
+.vs8-data-strip>div{background:#f5f6f3;padding:10px}.vs8-data-strip strong{font:700 27px Georgia,serif;display:block;color:#203746}.vs8-data-strip small{color:#66777e;font-size:10px}
+.vs8-sidebar-divider{border-top:1px solid #d8dede;margin:10px 0 21px}
+.vs8-map-sidebar h3{font:700 25px Georgia,serif;letter-spacing:-.03em;margin:8px 0;color:#203744}
+.vs8-focus-value{font:700 25px Georgia,serif;letter-spacing:-.04em;margin:0 0 9px}
+.vs8-focus-caption{color:#61747a;font-size:12px;line-height:1.5;min-height:65px}
+.vs8-detail-button{align-self:start;margin-top:auto}
+.vs8-shift-lists{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.vs8-shift-lists>div{min-width:0}.vs8-lists-head{display:flex;justify-content:space-between;gap:8px;align-items:end;border-bottom:1px solid #d4dad8;padding-bottom:9px}
+.vs8-lists-head h3{font:700 19px Georgia,serif;color:#213847;letter-spacing:-.025em;margin:0}.vs8-list-caption{color:#728086;font-size:11px}
+.vs8-shift-list{background:#fff;border:1px solid #e0e4e1;border-top:0;min-height:100px}.vs8-shift-list>p{padding:14px;margin:0;color:#6e7c83;font-size:12px}
+.vs8-shift-list button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 13px;text-align:left;border:0;border-bottom:1px solid #e6e9e6;background:transparent;color:#244252;cursor:pointer;font:inherit;font-size:12px}
+.vs8-shift-list button:hover{background:#f1f5f6}.vs8-shift-list button:last-child{border-bottom:0}.vs8-shift-list b{white-space:nowrap;font-weight:850;font-variant-numeric:tabular-nums}
+.vs8-shift-list .d{color:#286aaf}.vs8-shift-list .r{color:#b84643}
+.vs8-mapdesk + .module-heading{margin-top:15px}.direction-desk{margin-top:28px}
+@media(max-width:1000px){.vs8-map-grid{grid-template-columns:1fr}.vs8-map-primary{border-right:0;border-bottom:1px solid #d7dfdf}.vs8-map-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;padding:18px}.vs8-map-sidebar .vs8-sidebar-divider{display:none}.vs8-map-sidebar .vs8-data-strip{grid-column:1}.vs8-summary-description{min-height:0}.vs8-map-sidebar h3{margin-top:0}.vs8-detail-button{margin-top:5px}}
+@media(max-width:650px){.vs8-title-row{align-items:start;flex-direction:column}.vs8-map-toolbar select{max-width:100%;min-width:0}.vs8-map-toolbar label{flex:1;min-width:140px}.vs8-svg-shell{min-height:180px}.vs8-map-primary{padding:12px}.vs8-map-sidebar{display:block;padding:15px}.vs8-map-sidebar .vs8-data-strip{margin:12px 0}.vs8-shift-lists{grid-template-columns:1fr;gap:16px}.vs8-legend{font-size:9px;gap:5px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="topline" aria-label="Publication identification"><span class="brand-identity">WY <b>/</b> VOTESCOPE</span><span>THE 2026 GENERAL ELECTION</span><span>INDEPENDENT ELECTION MONITOR</span></div>
+<div aria-label="Publication identification" class="topline"><span class="brand-identity">WY <b>/</b> VOTESCOPE</span><span>THE 2026 GENERAL ELECTION</span><span>INDEPENDENT ELECTION MONITOR</span></div>
 <header><div><div class="eyebrow"><span class="eyebrow-line"></span> THE ELECTION DESK <span class="eyebrow-date">/ NOVEMBER 3, 2026</span></div>
 <div class="hero-wordmark"><h1>Vote<span>Scope</span><span class="h1-period">.</span></h1><div class="masthead-vertical"><span>LIVE</span><span>U.S. RETURNS</span></div></div>
-<div class="sub">The count, in context. <span class="sub-divider">/</span> Live returns, seat control &amp; historical shifts.<br><span class="byline">An independent project by <strong>Will York</strong></span></div></div><div class="controls"><span class="live"><span class="dot"></span><span id="liveTag">AUTO-REFRESH ON</span></span><select class="pick" id="frequency" aria-label="Refresh frequency"><option value="60">Every 60 sec</option><option value="120">Every 2 min</option><option value="300">Every 5 min</option></select><button class="btn" id="toggle">Pause</button><button class="btn primary" id="refresh">↻ Refresh now</button></div></header>
-<nav class="section-nav" aria-label="Dashboard sections"><a href="#pulse">NEW <span>Election Pulse</span></a><a href="#direction">00 <span>Movement</span></a><a href="#power">01 <span>Balance of power</span></a><a href="#performance">02 <span>Performance</span></a><a href="#history">03 <span>History</span></a><a href="#races">04 <span>Returns</span></a><a href="#dsa">05 <span>DSA tracker</span></a><a href="#civicapi">06 <span>civicAPI</span></a><span class="nav-trailing">OBSERVED RESULTS / NO PROJECTIONS</span></nav>
-<div class="banner"><div><strong id="feedStatus">Connecting to public election feeds…</strong><div class="small muted" id="meta">Actual vote data only; zero votes and missing races are treated differently.</div></div><div style="text-align:right"><div>Next check <strong class="countdown" id="countdown">—</strong></div><div class="small muted" id="checked">Not yet checked</div></div></div>
-
-<section class="direction-desk" id="direction" aria-labelledby="directionHeading">
- <div class="direction-masthead"><div><div class="direction-kicker">00 / MOVEMENT MONITOR</div><h2 id="directionHeading">Which way are the returns moving?</h2></div><div class="direction-legend">Two different measures. The first compares with a previous election; the second tracks changes observed between live data checks.</div></div>
- <div class="direction-grid">
-  <article class="direction-card" aria-labelledby="historyDialHeading">
-   <div class="direction-card-head"><div><div class="direction-title" id="historyDialHeading">Historical performance · House</div><div class="direction-subtitle">Median district-level D–R margin change versus past House elections</div></div><label><span class="sr-only">Comparison year </span><select class="direction-pick" id="directionBaseline" aria-label="Historical comparison year"><option value="2024">vs. 2024</option><option value="2022">vs. 2022</option></select></label></div>
-   <div class="direction-value-row"><strong id="historyDialValue" class="direction-value none" aria-live="polite">Awaiting returns</strong><span id="historyDialStatus" class="direction-status">No comparison calculated</span></div>
-   <div class="direction-track-labels"><span>← TOWARD DEMOCRATS</span><span>TOWARD REPUBLICANS →</span></div>
-   <div class="direction-track" role="img" aria-label="Historical swing scale from Democratic plus 20 points to Republican plus 20 points"><div class="toward-d"></div><div class="toward-r"></div><span class="center-line"></span><div id="historyDialNeedle" class="direction-needle inactive" style="left:50%"><span class="arrow" aria-hidden="true">▼</span></div></div>
-   <div class="direction-ticks"><span>D+20</span><span>D+10</span><span>0</span><span>R+10</span><span>R+20</span></div>
-   <div id="historyDialDetail" class="direction-detail">Waiting for comparable House vote totals and historical archives.</div>
-  </article>
-  <article class="direction-card" aria-labelledby="liveDialHeading">
-   <div class="direction-card-head"><div><div class="direction-title" id="liveDialHeading">Live margin movement · all three offices</div><div class="direction-subtitle">What changed among reporting House, Senate &amp; governor races since the last successful check</div></div><span class="direction-status" id="liveDialTime">Monitoring</span></div>
-   <div class="direction-value-row"><strong id="liveDialValue" class="direction-value none" aria-live="polite">Awaiting new votes</strong><span id="liveDialStatus" class="direction-status">Need at least two updates</span></div>
-   <div class="direction-track-labels"><span>← MARGINS MOVED D</span><span>MARGINS MOVED R →</span></div>
-   <div class="direction-track" role="img" aria-label="Most recent median movement scale from Democratic plus 10 points to Republican plus 10 points"><div class="toward-d"></div><div class="toward-r"></div><span class="center-line"></span><div id="liveDialNeedle" class="direction-needle inactive" style="left:50%"><span class="arrow" aria-hidden="true">▼</span></div></div>
-   <div class="direction-ticks"><span>D+10</span><span>D+5</span><span>0</span><span>R+5</span><span>R+10</span></div>
-   <div id="liveDialDetail" class="direction-detail">The needle will move when supported sources revise vote totals in races with both major parties.</div>
-   <div class="direction-movers"><span>Races with margin movement: <b id="liveMovedTotal">0</b></span><span class="d">Toward D: <b id="liveMovedD">0</b></span><span class="r">Toward R: <b id="liveMovedR">0</b></span></div>
-   <div class="direction-race-list" id="liveMovingRaces"></div>
-  </article>
- </div>
- <p class="direction-footnote">These are observed changes in the connected, incomplete returns—not a forecast of the election or a nationally representative swing. Both meters stay neutral when no supporting data is available. Arrows only move when the underlying reported values change.</p>
-</section>
-
-
-<section class="pulse-section" id="pulse" aria-labelledby="pulseHeading">
- <div class="sectop"><div><div class="module-number">NEW / COUNT WATCH</div><h2 id="pulseHeading">Election Pulse</h2><div class="sub">What has actually changed since VoteScope last observed a new count.</div></div><span class="pill" id="pulseUpdated">Waiting for new source counts</span></div>
- <div class="pulse-grid">
-  <div class="pulse-metric"><span>Net new votes observed</span><strong id="pulseVotes">—</strong><small id="pulseVotesNote">Requires two successful observations</small></div>
-  <div class="pulse-metric"><span>Races with new totals</span><strong id="pulseChanged">—</strong><small>Since prior recorded snapshot</small></div>
-  <div class="pulse-metric"><span>Sourced race calls added</span><strong id="pulseCalls">—</strong><small>No projection or inferred winner</small></div>
- </div>
- <div class="pulse-panel"><div class="pulse-toolbar"><div><strong>Where margins just moved</strong><div class="cap">Latest recorded change; Democratic minus Republican margin, in percentage points</div></div><label class="small">Office <select id="pulseOffice" class="pick"><option value="ALL">All offices</option><option value="H">House</option><option value="S">Senate</option><option value="G">Governor</option></select></label></div>
- <div class="pulse-table-wrap"><table class="pulse-table"><thead><tr><th>Race</th><th>New votes</th><th>D votes added</th><th>R votes added</th><th>Margin moved</th></tr></thead><tbody id="pulseRows"><tr><td colspan="5">Waiting for a second, changed source count.</td></tr></tbody></table></div>
- <p class="data-note" id="pulseCaveat">Changes are measured between VoteScope snapshots on this browser. They are not national vote-share estimates, and reporting-order effects can be large.</p></div>
-</section>
-<section class="replay-section" id="replay" aria-labelledby="replayHeading">
- <div class="sectop"><div><div class="module-number">NEW / REPLAY</div><h2 id="replayHeading">Election-night rewind</h2><div class="sub">Review how reported counts changed between saved snapshots on this device.</div></div><span class="pill" id="replayBadge">Local history</span></div>
- <div class="replay-card"><div class="replay-tools"><div><strong id="replayTime">No saved snapshots yet</strong><div class="cap" id="replayIndex">The first usable source count starts the recording.</div></div><div class="row" style="display:flex;gap:7px"><button class="btn" id="replayPrev" type="button">← Earlier</button><button class="btn" id="replayNext" type="button">Later →</button><button class="btn primary" id="replayLive" type="button">Jump to latest</button></div></div>
- <input id="replaySlider" class="replay-track" type="range" min="0" max="0" value="0" step="1" aria-label="Recorded election snapshot" disabled>
- <div class="replay-stats"><div class="replay-stat"><div class="cap">House called D / R</div><strong id="replayHouse">—</strong></div><div class="replay-stat"><div class="cap">Senate race calls D / R</div><strong id="replaySenate">—</strong></div><div class="replay-stat"><div class="cap">Governor calls D / R</div><strong id="replayGovernors">—</strong></div></div>
- <p class="replay-meta" id="replayText">Rewind keeps up to 80 changed snapshots in this browser's local storage. It cannot reconstruct updates from before you opened VoteScope.</p>
- </div>
-</section>
-
-<div class="module-heading" id="power"><div class="module-number">01 / CONTROL</div><div class="module-intro"><h2>Balance of power</h2><p>Called seats and remaining contests — updated from connected sources.</p></div><div class="edition-label">UNITED STATES CONGRESS · 2026</div></div>
-<div class="board">
-<section class="panel"><h2>U.S. House</h2><div class="cap">435 races · 218 seats for an outright majority</div><div class="bar" aria-label="House called seats distribution"><span class="d" id="houseDbar"></span><span class="o" id="houseObar"></span><span class="r" id="houseRbar"></span></div><div class="partygrid"><div class="partystat"><div class="statlabel">Democratic called</div><div class="big blue" id="houseD">0</div></div><div class="partystat"><div class="statlabel">Not called</div><div class="big" id="houseU">435</div></div><div class="partystat"><div class="statlabel">Republican called</div><div class="big red" id="houseR">0</div></div></div><div class="pop" id="houseProgress">Waiting for reported returns.</div></section>
-<section class="panel"><h2>U.S. Senate</h2><div class="cap">100 seats · 35 contests in 2026 · 51 for an outright majority</div><div class="bar"><span class="d" id="senateDbar"></span><span class="o" id="senateObar"></span><span class="r" id="senateRbar"></span></div><div class="partygrid"><div class="partystat"><div class="statlabel">Democratic caucus*</div><div class="big blue" id="senateD">34</div></div><div class="partystat"><div class="statlabel">Contested &amp; uncalled</div><div class="big" id="senateU">35</div></div><div class="partystat"><div class="statlabel">Republican seats*</div><div class="big red" id="senateR">31</div></div></div><div class="pop" id="senateProgress">*Baseline holdovers: 34 in the Democratic caucus, 31 Republicans. Includes no forecast; a 50–50 tie may be decided by the vice president.</div></section>
-<section class="panel" aria-labelledby="governorPowerHeading"><h2 id="governorPowerHeading">Governor elections</h2><div class="cap">2026 contests only · not all 50 sitting governors</div><div class="bar"><span class="d" id="governorDbar"></span><span class="o" id="governorObar"></span><span class="r" id="governorRbar"></span></div><div class="partygrid"><div class="partystat"><div class="statlabel">D called</div><div class="big" id="governorD">0</div></div><div class="partystat"><div class="statlabel">R called</div><div class="big" id="governorR">0</div></div><div class="partystat"><div class="statlabel">Uncalled</div><div class="big" id="governorU">—</div></div></div><div class="cap" id="governorProgress">Waiting for governor returns.</div></section>
+<div class="sub">The count, in context. <span class="sub-divider">/</span> Live returns, seat control &amp; historical shifts.<br/><span class="byline">An independent project by <strong>Will York</strong></span></div></div><div class="controls"><span class="live"><span class="dot"></span><span id="liveTag">AUTO-REFRESH ON</span></span><select aria-label="Refresh frequency" class="pick" id="frequency"><option value="60">Every 60 sec</option><option value="120">Every 2 min</option><option value="300">Every 5 min</option></select><button class="btn" id="toggle">Pause</button><button class="btn primary" id="refresh">↻ Refresh now</button></div></header>
+<nav aria-label="Dashboard sections" class="section-nav"><a href="#map">01 <span>Election map</span></a><a href="#power">02 <span>Control</span></a><a href="#direction">03 <span>Movement</span></a><a href="#races">04 <span>Races</span></a><a href="#v7watch">★ <span>Watchlist</span></a><a href="#pulse">05 <span>New votes</span></a><a href="#dsa">06 <span>DSA</span></a><a href="#sourceLedger">07 <span>Sources</span></a></nav>
+<div class="banner"><div><strong id="feedStatus">Connecting to public election feeds…</strong><div class="small muted" id="meta">Actual vote data only; zero votes and missing races are treated differently.</div></div><div style="text-align:right"><div>Next check <strong class="countdown" id="countdown">—</strong></div><div class="small muted" id="checked">Not yet checked</div></div></div><section aria-labelledby="vs8Title" class="vs8-mapdesk" id="map">
+<div class="vs8-title-row">
+<div><div class="module-number">THE NATIONAL VIEW / LIVE RETURNS</div><h2 id="vs8Title">Election map <em>&amp;</em> shift</h2><p>Explore where reported margins stand, how they compare with earlier elections, and what changed between counts.</p></div>
+<span class="vs8-live" id="vs8MapStatus">Awaiting results feed</span>
 </div>
+<div class="vs8-map-toolbar">
+<label>Office <select class="pick" id="vs8Office"><option value="H">U.S. House</option><option value="S">U.S. Senate</option><option value="G">Governor</option></select></label>
+<label>Display <select class="pick" id="vs8Metric"><option value="current">Reported D–R margin</option><option value="2024">Shift vs. 2024 House</option><option value="2022">Shift vs. 2022 House</option><option value="new">Change since prior update</option></select></label>
+<button class="btn" id="vs8Reset" type="button">All states</button>
+</div>
+<div class="vs8-map-grid">
+<div class="vs8-map-primary">
+<div class="vs8-map-meta"><span id="vs8Coverage">Checking source coverage…</span><span id="vs8MapType">State map</span></div>
+<div class="vs8-svg-shell" id="vs8SvgShell"><svg aria-label="Interactive map of the 50 U.S. states and District of Columbia. Select a state for race results." id="vs8Svg" role="img" viewbox="0 0 1000 570"><title>VoteScope election map</title></svg></div>
+<div class="vs8-legend"><span>← Toward / leading Democratic</span><div class="vs8-legend-swatch"></div><span>Toward / leading Republican →</span></div>
+<p class="vs8-coverage-note" id="vs8Method">Gray means no usable comparison. This map shows reported counts, not projections.</p>
+<p class="vs8-map-credit">State boundaries: U.S. Census Bureau via Election Wrld (when available). <span id="vs8Fallback"></span></p>
+</div>
+<aside aria-label="Election map summary" class="vs8-map-sidebar">
+<div class="vs8-summary-kicker">OBSERVED MARGIN / NO FORECAST</div>
+<div class="vs8-summary-number" id="vs8National">—</div>
+<div class="vs8-summary-description" id="vs8NationalSub">Waiting for usable published returns.</div>
+<div class="vs8-data-strip"><div><strong id="vs8Active">—</strong><small>States with data</small></div><div><strong id="vs8Rows">—</strong><small>Contributing races</small></div></div>
+<div class="vs8-sidebar-divider"></div>
+<div class="vs8-state-kicker">STATE DETAIL</div>
+<h3 id="vs8FocusName">Select a state</h3>
+<div class="vs8-focus-value" id="vs8FocusValue">—</div>
+<div class="vs8-focus-caption" id="vs8FocusNote">Click a state to see its reporting and historical context.</div>
+<button class="btn primary vs8-detail-button" disabled="" id="vs8SeeRaces" type="button">View this state's races ↓</button>
+</aside>
+</div>
+<div class="vs8-shift-lists">
+<div><div class="vs8-lists-head"><h3>Largest Democratic shifts</h3><span class="vs8-list-caption" id="vs8DCount">—</span></div><div class="vs8-shift-list" id="vs8DList"><p>Waiting for comparable returns.</p></div></div>
+<div><div class="vs8-lists-head"><h3>Largest Republican shifts</h3><span class="vs8-list-caption" id="vs8RCount">—</span></div><div class="vs8-shift-list" id="vs8RList"><p>Waiting for comparable returns.</p></div></div>
+</div>
+</section><div class="module-heading" id="power"><div class="module-number">01 / CONTROL</div><div class="module-intro"><h2>Balance of power</h2><p>Called seats and remaining contests — updated from connected sources.</p></div><div class="edition-label">UNITED STATES CONGRESS · 2026</div></div><div class="board">
+<section class="panel"><h2>U.S. House</h2><div class="cap">435 races · 218 seats for an outright majority</div><div aria-label="House called seats distribution" class="bar"><span class="d" id="houseDbar"></span><span class="o" id="houseObar"></span><span class="r" id="houseRbar"></span></div><div class="partygrid"><div class="partystat"><div class="statlabel">Democratic called</div><div class="big blue" id="houseD">0</div></div><div class="partystat"><div class="statlabel">Not called</div><div class="big" id="houseU">435</div></div><div class="partystat"><div class="statlabel">Republican called</div><div class="big red" id="houseR">0</div></div></div><div class="pop" id="houseProgress">Waiting for reported returns.</div></section>
+<section class="panel"><h2>U.S. Senate</h2><div class="cap">100 seats · 35 contests in 2026 · 51 for an outright majority</div><div class="bar"><span class="d" id="senateDbar"></span><span class="o" id="senateObar"></span><span class="r" id="senateRbar"></span></div><div class="partygrid"><div class="partystat"><div class="statlabel">Democratic caucus*</div><div class="big blue" id="senateD">34</div></div><div class="partystat"><div class="statlabel">Contested &amp; uncalled</div><div class="big" id="senateU">35</div></div><div class="partystat"><div class="statlabel">Republican seats*</div><div class="big red" id="senateR">31</div></div></div><div class="pop" id="senateProgress">*Baseline holdovers: 34 in the Democratic caucus, 31 Republicans. Includes no forecast; a 50–50 tie may be decided by the vice president.</div></section>
+<section aria-labelledby="governorPowerHeading" class="panel"><h2 id="governorPowerHeading">Governor elections</h2><div class="cap">2026 contests only · not all 50 sitting governors</div><div class="bar"><span class="d" id="governorDbar"></span><span class="o" id="governorObar"></span><span class="r" id="governorRbar"></span></div><div class="partygrid"><div class="partystat"><div class="statlabel">D called</div><div class="big" id="governorD">0</div></div><div class="partystat"><div class="statlabel">R called</div><div class="big" id="governorR">0</div></div><div class="partystat"><div class="statlabel">Uncalled</div><div class="big" id="governorU">—</div></div></div><div class="cap" id="governorProgress">Waiting for governor returns.</div></section>
+</div><section aria-labelledby="directionHeading" class="direction-desk" id="direction">
+<div class="direction-masthead"><div><div class="direction-kicker">00 / MOVEMENT MONITOR</div><h2 id="directionHeading">Which way are the returns moving?</h2></div><div class="direction-legend">Two different measures. The first compares with a previous election; the second tracks changes observed between live data checks.</div></div>
+<div class="direction-grid">
+<article aria-labelledby="historyDialHeading" class="direction-card">
+<div class="direction-card-head"><div><div class="direction-title" id="historyDialHeading">Historical performance · House</div><div class="direction-subtitle">Median district-level D–R margin change versus past House elections</div></div><label><span class="sr-only">Comparison year </span><select aria-label="Historical comparison year" class="direction-pick" id="directionBaseline"><option value="2024">vs. 2024</option><option value="2022">vs. 2022</option></select></label></div>
+<div class="direction-value-row"><strong aria-live="polite" class="direction-value none" id="historyDialValue">Awaiting returns</strong><span class="direction-status" id="historyDialStatus">No comparison calculated</span></div>
+<div class="direction-track-labels"><span>← TOWARD DEMOCRATS</span><span>TOWARD REPUBLICANS →</span></div>
+<div aria-label="Historical swing scale from Democratic plus 20 points to Republican plus 20 points" class="direction-track" role="img"><div class="toward-d"></div><div class="toward-r"></div><span class="center-line"></span><div class="direction-needle inactive" id="historyDialNeedle" style="left:50%"><span aria-hidden="true" class="arrow">▼</span></div></div>
+<div class="direction-ticks"><span>D+20</span><span>D+10</span><span>0</span><span>R+10</span><span>R+20</span></div>
+<div class="direction-detail" id="historyDialDetail">Waiting for comparable House vote totals and historical archives.</div>
+</article>
+<article aria-labelledby="liveDialHeading" class="direction-card">
+<div class="direction-card-head"><div><div class="direction-title" id="liveDialHeading">Live margin movement · all three offices</div><div class="direction-subtitle">What changed among reporting House, Senate &amp; governor races since the last successful check</div></div><span class="direction-status" id="liveDialTime">Monitoring</span></div>
+<div class="direction-value-row"><strong aria-live="polite" class="direction-value none" id="liveDialValue">Awaiting new votes</strong><span class="direction-status" id="liveDialStatus">Need at least two updates</span></div>
+<div class="direction-track-labels"><span>← MARGINS MOVED D</span><span>MARGINS MOVED R →</span></div>
+<div aria-label="Most recent median movement scale from Democratic plus 10 points to Republican plus 10 points" class="direction-track" role="img"><div class="toward-d"></div><div class="toward-r"></div><span class="center-line"></span><div class="direction-needle inactive" id="liveDialNeedle" style="left:50%"><span aria-hidden="true" class="arrow">▼</span></div></div>
+<div class="direction-ticks"><span>D+10</span><span>D+5</span><span>0</span><span>R+5</span><span>R+10</span></div>
+<div class="direction-detail" id="liveDialDetail">The needle will move when supported sources revise vote totals in races with both major parties.</div>
+<div class="direction-movers"><span>Races with margin movement: <b id="liveMovedTotal">0</b></span><span class="d">Toward D: <b id="liveMovedD">0</b></span><span class="r">Toward R: <b id="liveMovedR">0</b></span></div>
+<div class="direction-race-list" id="liveMovingRaces"></div>
+</article>
+</div>
+<p class="direction-footnote">These are observed changes in the connected, incomplete returns—not a forecast of the election or a nationally representative swing. Both meters stay neutral when no supporting data is available. Arrows only move when the underlying reported values change.</p>
+</section><section aria-labelledby="pulseHeading" class="pulse-section" id="pulse">
+<div class="sectop"><div><div class="module-number">NEW / COUNT WATCH</div><h2 id="pulseHeading">Election Pulse</h2><div class="sub">What has actually changed since VoteScope last observed a new count.</div></div><span class="pill" id="pulseUpdated">Waiting for new source counts</span></div>
+<div class="pulse-grid">
+<div class="pulse-metric"><span>Net new votes observed</span><strong id="pulseVotes">—</strong><small id="pulseVotesNote">Requires two successful observations</small></div>
+<div class="pulse-metric"><span>Races with new totals</span><strong id="pulseChanged">—</strong><small>Since prior recorded snapshot</small></div>
+<div class="pulse-metric"><span>Sourced race calls added</span><strong id="pulseCalls">—</strong><small>No projection or inferred winner</small></div>
+</div>
+<div class="pulse-panel"><div class="pulse-toolbar"><div><strong>Where margins just moved</strong><div class="cap">Latest recorded change; Democratic minus Republican margin, in percentage points</div></div><label class="small">Office <select class="pick" id="pulseOffice"><option value="ALL">All offices</option><option value="H">House</option><option value="S">Senate</option><option value="G">Governor</option></select></label></div>
+<div class="pulse-table-wrap"><table class="pulse-table"><thead><tr><th>Race</th><th>New votes</th><th>D votes added</th><th>R votes added</th><th>Margin moved</th></tr></thead><tbody id="pulseRows"><tr><td colspan="5">Waiting for a second, changed source count.</td></tr></tbody></table></div>
+<p class="data-note" id="pulseCaveat">Changes are measured between VoteScope snapshots on this browser. They are not national vote-share estimates, and reporting-order effects can be large.</p></div>
+</section><section aria-labelledby="v7WatchTitle" class="v7-watch-section" id="v7watch">
+<div class="v7-watch-head">
+<div><div class="module-number">MY DESK / LIVE WATCHLIST</div><h2 id="v7WatchTitle">Races you're following <span class="v7-watch-mini" id="v7WatchCount">0 pinned</span></h2><div class="v7-watch-sub">Pinned races stay here across visits in this browser. Every result refresh updates their counts and observed movement.</div></div>
+<div class="v7-watch-actions"><button class="btn" id="v7WatchFind" type="button">Find races to pin ↓</button><button class="btn" id="v7WatchRefresh" type="button">↻ Update watchlist</button></div>
+</div>
+<div class="v7-watch-grid" id="v7WatchGrid"><div class="v7-watch-empty">Use the ☆ beside any race to pin it here. Your existing saved races will appear automatically.</div></div>
+<div class="v7-explainer">Change since the prior update reflects new reported vote batches, not a forecast. Historical swing appears only for House districts with a supported 2022/2024 comparison. civicAPI is a secondary check and may be blocked by browser access restrictions.</div>
+</section>
 
-<section class="performance" id="performance" aria-labelledby="performanceTitle">
+
+
+<section aria-labelledby="replayHeading" class="replay-section" id="replay">
+<div class="sectop"><div><div class="module-number">NEW / REPLAY</div><h2 id="replayHeading">Election-night rewind</h2><div class="sub">Review how reported counts changed between saved snapshots on this device.</div></div><span class="pill" id="replayBadge">Local history</span></div>
+<div class="replay-card"><div class="replay-tools"><div><strong id="replayTime">No saved snapshots yet</strong><div class="cap" id="replayIndex">The first usable source count starts the recording.</div></div><div class="row" style="display:flex;gap:7px"><button class="btn" id="replayPrev" type="button">← Earlier</button><button class="btn" id="replayNext" type="button">Later →</button><button class="btn primary" id="replayLive" type="button">Jump to latest</button></div></div>
+<input aria-label="Recorded election snapshot" class="replay-track" disabled="" id="replaySlider" max="0" min="0" step="1" type="range" value="0"/>
+<div class="replay-stats"><div class="replay-stat"><div class="cap">House called D / R</div><strong id="replayHouse">—</strong></div><div class="replay-stat"><div class="cap">Senate race calls D / R</div><strong id="replaySenate">—</strong></div><div class="replay-stat"><div class="cap">Governor calls D / R</div><strong id="replayGovernors">—</strong></div></div>
+<p class="replay-meta" id="replayText">Rewind keeps up to 80 changed snapshots in this browser's local storage. It cannot reconstruct updates from before you opened VoteScope.</p>
+</div>
+</section>
+
+
+<section aria-labelledby="performanceTitle" class="performance" id="performance">
 <div class="sectop"><div><div class="module-number">02 / EARLY RETURNS</div><h2 id="performanceTitle">The performance desk</h2><div class="sub">How each party's reported margin differs from prior House results; updated with every new published count.</div></div><span class="pill" id="perfLastCheck">Waiting for live returns</span></div>
 <div class="performance-rows"><div class="panel"><div class="perf-masthead"><div><div class="cap">Median observed shift in comparable, reporting House districts</div><div class="perf-readout" id="perfMedian">—</div><div class="perf-caption" id="perfCaption">No comparable returns yet. This is not a national popular-vote swing.</div></div></div><div class="gauge-area"><div class="gauge-top"><span class="dem-label">← TOWARD DEMOCRATS</span><span class="rep-label">TOWARD REPUBLICANS →</span></div><div class="gauge-track"><div class="left-side"></div><div class="right-side"></div><div class="gauge-midline"></div><div class="gauge-pointer" id="perfPointer" style="left:50%"></div></div><div class="gauge-ticks"><span>D+20</span><span>D+10</span><span>0</span><span>R+10</span><span>R+20</span></div></div><div class="perf-minor-stat"><span>Matched by district boundaries</span><strong id="perfSample">0 reporting districts</strong></div><div class="perf-minor-stat"><span>Comparison</span><strong id="perfYear">2024 House</strong></div><div class="warnsmall">This gauge is the <strong>median of currently reporting comparable House districts</strong>, not a nationally weighted result. These are unmatched partial returns, not same-precinct swing, and may change sharply as more ballots arrive.</div></div>
 <div class="panel"><div class="perf-masthead"><div><strong>Overperformance leaderboard</strong><div class="cap">Reported change in the D–R margin, percentage points</div></div><label class="perf-mode" for="perfDirection">Show <select class="pick" id="perfDirection"><option value="all">Largest shifts</option><option value="D">Toward Democrats</option><option value="R">Toward Republicans</option></select></label></div><div class="perf-scroll"><table class="results-table"><thead><tr><th>House district</th><th>Reporting</th><th>Compared with</th><th>Swing</th></tr></thead><tbody id="perfRows"><tr><td colspan="4">Waiting for live returns and historical archives…</td></tr></tbody></table></div></div></div>
 <div class="panel" style="margin-top:15px"><div class="historyhead"><div><strong>What changed since the last check</strong><div class="cap">New vote totals and newly called races detected while this page is open</div></div><span class="pill" id="activityCount">0 updates</span></div><div class="update-feed" id="activityFeed"><div class="histlegend" style="padding:15px 0">The activity log will populate when a connected source publishes changed vote counts after your first successful check.</div></div></div>
 </section>
 
-<section class="matched-section" id="matched" aria-labelledby="matchedHeading">
- <div class="sectop"><div><div class="module-number">METHOD / MATCHED GEOGRAPHY</div><h2 id="matchedHeading">Same-precinct comparison</h2><div class="sub">Only compare the exact same precinct, contest and office in both elections—not partial 2026 returns against a full-state 2024 result.</div></div><span class="pill" id="matchedBadge">No matched feed connected</span></div>
- <div class="matched-card">
- <div class="matched-tools"><div><strong>Verified geographic matches</strong><div class="cap" id="matchedStatus">No nationwide 2026 precinct-level feed is connected. The historical district swing above remains provisional.</div></div><label class="small">Benchmark <select class="pick" id="matchedYear"><option value="2024">2024</option><option value="2022">2022</option></select></label></div>
- <div class="match-upload"><label class="small" for="matchedCsv">Optional: add verified precinct-level CSV results (both years)</label><input type="file" id="matchedCsv" accept=".csv,text/csv" multiple><div class="data-note">CSV columns: <code>year,office,state,district,county,precinct,party,votes</code>. Office H/S/G; party D/R. A file must contain actual results, not estimates. The CSV is processed in your browser and never uploaded to VoteScope.</div></div>
- <div class="match-results" id="matchedResults">No matched precinct returns loaded. This panel will not invent a swing.</div>
- <div class="data-note">Matching uses identical state, office, district, county and precinct identifiers in both years and requires Democratic and Republican counts in both periods. Changed boundaries or precinct IDs will not be silently combined. Imported files require a new import to reflect subsequent returns.</div>
- </div>
+<section aria-labelledby="historicTitle" class="historical" id="history">
+<div class="sectop"><div><div class="module-number">03 / CONTEXT</div><h2 id="historicTitle">The swing desk</h2><div class="sub">Track 2026 returns against the 2022 and 2024 House elections — and the 2024 presidential statewide benchmark.</div></div><span class="pill" id="archiveStatus">Loading historical archives…</span></div>
+<div class="histrow">
+<div class="panel">
+<div class="historyhead"><strong>How the margin has changed</strong><div class="histcontrols"><label for="baseline">Compare with</label><select class="pick" id="baseline"><option value="2024">2024 House</option><option value="2022">2022 House</option></select></div></div>
+<p class="histintro">Margins are Democratic share minus Republican share, in percentage points of <em>all votes cast</em>. A swing of D +5 means the Democratic margin increased five points compared with the selected year.</p>
+<div class="histstats"><div class="histstat"><div class="statlabel">Historical races loaded</div><strong id="histLoaded">—</strong></div><div class="histstat"><div class="statlabel">2026 races comparable*</div><strong id="histComparable">—</strong></div><div class="histstat"><div class="statlabel">Reporting with comparison</div><strong id="histReporting">—</strong></div></div>
+<div class="warnsmall">*2026 shifts are <strong>raw, partial returns</strong>, not matched-precinct swings. Early returns can be highly unrepresentative. No projected winner or final margin is inferred.</div>
+<div class="histnote" id="histDetails">Historical data is retrieved separately and does not depend on the live-result feeds. Districts with changed boundaries are excluded from like-for-like swing rankings.</div>
+</div>
+<div class="panel"><div class="historyhead"><strong>Largest observed shifts</strong><span class="pill" id="shiftYear">vs 2024</span></div><div class="cap" style="margin-top:6px">Only comparable, reporting races; not predictions</div><div class="histlist" id="swingLeaders"><div class="muted small">Historical data loading…</div></div></div>
+</div>
 </section>
-
-<section class="historical" id="history" aria-labelledby="historicTitle">
- <div class="sectop"><div><div class="module-number">03 / CONTEXT</div><h2 id="historicTitle">The swing desk</h2><div class="sub">Track 2026 returns against the 2022 and 2024 House elections — and the 2024 presidential statewide benchmark.</div></div><span class="pill" id="archiveStatus">Loading historical archives…</span></div>
- <div class="histrow">
-  <div class="panel">
-   <div class="historyhead"><strong>How the margin has changed</strong><div class="histcontrols"><label for="baseline">Compare with</label><select class="pick" id="baseline"><option value="2024">2024 House</option><option value="2022">2022 House</option></select></div></div>
-   <p class="histintro">Margins are Democratic share minus Republican share, in percentage points of <em>all votes cast</em>. A swing of D +5 means the Democratic margin increased five points compared with the selected year.</p>
-   <div class="histstats"><div class="histstat"><div class="statlabel">Historical races loaded</div><strong id="histLoaded">—</strong></div><div class="histstat"><div class="statlabel">2026 races comparable*</div><strong id="histComparable">—</strong></div><div class="histstat"><div class="statlabel">Reporting with comparison</div><strong id="histReporting">—</strong></div></div>
-   <div class="warnsmall">*2026 shifts are <strong>raw, partial returns</strong>, not matched-precinct swings. Early returns can be highly unrepresentative. No projected winner or final margin is inferred.</div>
-   <div class="histnote" id="histDetails">Historical data is retrieved separately and does not depend on the live-result feeds. Districts with changed boundaries are excluded from like-for-like swing rankings.</div>
-  </div>
-  <div class="panel"><div class="historyhead"><strong>Largest observed shifts</strong><span class="pill" id="shiftYear">vs 2024</span></div><div class="cap" style="margin-top:6px">Only comparable, reporting races; not predictions</div><div id="swingLeaders" class="histlist"><div class="muted small">Historical data loading…</div></div></div>
- </div>
-</section>
-
 <div class="sectop" id="races"><div><div class="module-number">04 / RETURNS</div><h2>Race-by-race results</h2><div class="sub" id="raceCount">Loading latest available state returns…</div></div><span class="pill" id="newVotes">Updates appear here after the next refresh</span></div>
-<div class="filters"><select class="pick" id="chamber"><option value="ALL">All races</option><option value="H">U.S. House</option><option value="S">U.S. Senate</option><option value="G">Governor</option></select><select class="pick" id="state"><option value="ALL">All states</option></select><select class="pick" id="comparisonFilter"><option value="ALL">All comparisons</option><option value="COMPARABLE">Comparable districts</option><option value="CHANGED">Lines changed</option><option value="WATCH">★ Watched races</option></select><select class="pick" id="status"><option value="ALL">All statuses</option><option value="REPORTING">Votes reported</option><option value="UNCALLED">Not called</option><option value="CALLED">Called races</option></select><select class="pick" id="sort"><option value="recent">Newest updates</option><option value="closest">Closest margins</option><option value="votes">Most votes counted</option><option value="state">State / district</option><option value="swingD">Largest D shift</option><option value="swingR">Largest R shift</option><option value="watch">Watched races first</option></select><input class="search" id="search" type="search" placeholder="Search state, race, candidate…" aria-label="Search races"></div>
-<div id="raceGrid" class="cards"></div><div id="more" style="text-align:center;margin-top:15px;display:none"><button class="btn" id="showMore">Show more races</button></div>
-<section class="endorsement-section" id="dsa" aria-labelledby="dsaTitle"><div class="sectop"><div><div class="module-number">05 / ENDORSEMENTS</div><h2 id="dsaTitle">DSA election tracker</h2><div class="sub">Verified national and local Democratic Socialists of America endorsements, tracked against available actual election returns.</div></div><span class="pill" id="dsaUpdated">Sources verified Oct–Nov 2026</span></div><div class="panel"><div class="dsa-header"><strong>Ten endorsed U.S. House candidates</strong><span class="pill">Formal endorsements only</span></div><div class="dsa-statline"><div><strong id="dsaWon">0</strong>Sourced wins</div><div><strong id="dsaLeading">0</strong>Currently leading, uncalled</div><div><strong id="dsaReporting">0</strong>Races reporting</div><div><strong id="dsaNotReporting">10</strong>Not reporting / unavailable</div></div><div class="dsa-grid" id="dsaGrid"><div class="histlegend">Waiting for candidate roster…</div></div><div class="dsa-footnote">DSA endorsements are not the same as party affiliation or DSA membership. A race is counted as won only after a sourced call for that exact candidate. An unreported candidate is not assumed to have lost. The House list is a verified subset of the wider DSA slate; local and state contests are not yet ingested by this results feed.</div><div class="dsa-links"><a href="https://2026.electoral.dsausa.org/" target="_blank" rel="noopener">DSA national election-night tracker ↗</a><a href="https://democraticleft.dsausa.org/2026/10/28/dsa-races-to-watch-on-election-night/" target="_blank" rel="noopener">DSA editorial race guide ↗</a><a href="https://ballotpedia.org/Endorsements_by_Democratic_Socialists_of_America,_2026" target="_blank" rel="noopener">Verify endorsements on Ballotpedia ↗</a></div></div></section>
-
-<section class="source-ledger" id="sourceLedger" aria-labelledby="sourceLedgerHeading"><div class="sectop"><div><div class="module-number">METHODOLOGY / DATA HEALTH</div><h2 id="sourceLedgerHeading">Source freshness</h2><div class="sub">The last successful check is not necessarily the time an election office last counted votes.</div></div></div><div id="sourceLedgerRows" class="source-grid"><div class="source-row">Checking connected sources…</div></div></section>
-
-<div class="sourcebox"><strong>Methodology &amp; sources</strong><p class="sub" style="margin:7px 0">It polls every 60 seconds <strong>while this page remains open</strong> and displays the latest data available from upstream publishers. New candidate totals may arrive less frequently. Replay and Pulse use this browser’s own saved observations; they do not reconstruct earlier returns. Votes counted, precincts reporting, estimated votes counted, and winners called are different measures. A leader is not a winner. Missing states in the official-state feed mean <em>no feed coverage</em>, not zero votes. A race is counted as called only when the results provider identifies a named race-calling source.</p><div class="small"><strong>Sources:</strong> <a href="https://thepeoplestally.com/open-data/" target="_blank" rel="noopener">The People's Tally</a> (CC BY 4.0, public results snapshot; original source on each race); <a href="https://openamerica.io/elections/api/" target="_blank" rel="noopener">Open America</a> (official state election office feeds, currently covers 22 states; no projections). <a href="https://apnews.com/hub/election-2026" target="_blank" rel="noopener">AP elections</a> for a separate national race-call reference. Historical data: <a href="https://www.electionwrld.com/developers" target="_blank" rel="noopener">Election Wrld</a> (CC BY 4.0) using <a href="https://electionlab.mit.edu/data" target="_blank" rel="noopener">MIT Election Data and Science Lab</a> (CC0). 2026 boundary differences are flagged conservatively until verified for an individual district. Source coverage is not exhaustive.</div><div class="small muted" id="sourcesState" style="margin-top:10px">Checking feed connectivity…</div></div>
-
-<section class="civic-section" id="civicapi" aria-labelledby="civicHeading">
- <div class="civic-head"><div><div class="module-number">DATA DESK / ADDITIONAL SOURCE</div><h2 id="civicHeading">civicAPI source cross-check</h2><div class="sub">Look up another provider's returns for a selected 2026 House, Senate, or governor contest.</div></div><span id="civicHealthBadge" class="status-flag">CONNECTOR NOT CHECKED</span></div>
- <p class="civic-explainer">This is a <strong>separate source comparison</strong>, not a fifth confirmed live-results feed. We never add one provider's vote totals to another's, automatically replace a sourced call, or count a test race. Browser security settings may prevent direct access to civicAPI; if so, VoteScope keeps the four existing feeds and shows an explicit error. Source: <a href="https://civicapi.org/" target="_blank" rel="noopener">civicAPI</a>.</p>
- <div class="civic-controls">
-  <label>State<select id="civicState" class="pick" aria-label="State for civicAPI lookup"><option value="">Choose state…</option></select></label>
-  <label>Office<select id="civicOffice" class="pick" aria-label="Office for civicAPI lookup"><option value="H">U.S. House</option><option value="S">U.S. Senate</option><option value="G">Governor</option></select></label>
-  <label>House district<input id="civicDistrict" type="text" inputmode="numeric" placeholder="e.g. 7 (House only)" aria-label="Congressional district number"></label>
-  <button id="civicLookup" type="button" class="btn primary">↻ Check civicAPI</button>
- </div>
- <div id="civicResults" class="civic-results" role="status" aria-live="polite">Choose a state and an office, then select <strong>Check civicAPI</strong>. This source does not affect the main results unless explicitly verified and incorporated in a future release.</div>
- <p id="civicLast" class="civic-note">No results checked. Selected-race checks do not certify a winner, and vote totals from separate sources are never summed.</p>
-</section>
-
+<div class="filters"><select class="pick" id="chamber"><option value="ALL">All races</option><option value="H">U.S. House</option><option value="S">U.S. Senate</option><option value="G">Governor</option></select><select class="pick" id="state"><option value="ALL">All states</option></select><select class="pick" id="comparisonFilter"><option value="ALL">All comparisons</option><option value="COMPARABLE">Comparable districts</option><option value="CHANGED">Lines changed</option><option value="WATCH">★ Watched races</option></select><select class="pick" id="status"><option value="ALL">All statuses</option><option value="REPORTING">Votes reported</option><option value="UNCALLED">Not called</option><option value="CALLED">Called races</option></select><select class="pick" id="sort"><option value="recent">Newest updates</option><option value="closest">Closest margins</option><option value="votes">Most votes counted</option><option value="state">State / district</option><option value="swingD">Largest D shift</option><option value="swingR">Largest R shift</option><option value="watch">Watched races first</option></select><input aria-label="Search races" class="search" id="search" placeholder="Search state, race, candidate…" type="search"/></div>
+<div class="cards" id="raceGrid"></div><div id="more" style="text-align:center;margin-top:15px;display:none"><button class="btn" id="showMore">Show more races</button></div>
+<section aria-labelledby="dsaTitle" class="endorsement-section" id="dsa"><div class="sectop"><div><div class="module-number">05 / ENDORSEMENTS</div><h2 id="dsaTitle">DSA election tracker</h2><div class="sub">Verified national and local Democratic Socialists of America endorsements, tracked against available actual election returns.</div></div><span class="pill" id="dsaUpdated">Sources verified Oct–Nov 2026</span></div><div class="panel"><div class="dsa-header"><strong>Ten endorsed U.S. House candidates</strong><span class="pill">Formal endorsements only</span></div><div class="dsa-statline"><div><strong id="dsaWon">0</strong>Sourced wins</div><div><strong id="dsaLeading">0</strong>Currently leading, uncalled</div><div><strong id="dsaReporting">0</strong>Races reporting</div><div><strong id="dsaNotReporting">10</strong>Not reporting / unavailable</div></div><div class="dsa-grid" id="dsaGrid"><div class="histlegend">Waiting for candidate roster…</div></div><div class="dsa-footnote">DSA endorsements are not the same as party affiliation or DSA membership. A race is counted as won only after a sourced call for that exact candidate. An unreported candidate is not assumed to have lost. The House list is a verified subset of the wider DSA slate; local and state contests are not yet ingested by this results feed.</div><div class="dsa-links"><a href="https://2026.electoral.dsausa.org/" rel="noopener" target="_blank">DSA national election-night tracker ↗</a><a href="https://democraticleft.dsausa.org/2026/10/28/dsa-races-to-watch-on-election-night/" rel="noopener" target="_blank">DSA editorial race guide ↗</a><a href="https://ballotpedia.org/Endorsements_by_Democratic_Socialists_of_America,_2026" rel="noopener" target="_blank">Verify endorsements on Ballotpedia ↗</a></div></div></section>
+<section aria-labelledby="sourceLedgerHeading" class="source-ledger" id="sourceLedger"><div class="sectop"><div><div class="module-number">METHODOLOGY / DATA HEALTH</div><h2 id="sourceLedgerHeading">Source freshness</h2><div class="sub">The last successful check is not necessarily the time an election office last counted votes.</div></div></div><div class="source-grid" id="sourceLedgerRows"><div class="source-row">Checking connected sources…</div></div></section>
+<div class="sourcebox"><strong>Methodology &amp; sources</strong><p class="sub" style="margin:7px 0">It polls every 60 seconds <strong>while this page remains open</strong> and displays the latest data available from upstream publishers. New candidate totals may arrive less frequently. Replay and Pulse use this browser’s own saved observations; they do not reconstruct earlier returns. Votes counted, precincts reporting, estimated votes counted, and winners called are different measures. A leader is not a winner. Missing states in the official-state feed mean <em>no feed coverage</em>, not zero votes. A race is counted as called only when the results provider identifies a named race-calling source.</p><div class="small"><strong>Sources:</strong> <a href="https://thepeoplestally.com/open-data/" rel="noopener" target="_blank">The People's Tally</a> (CC BY 4.0, public results snapshot; original source on each race); <a href="https://openamerica.io/elections/api/" rel="noopener" target="_blank">Open America</a> (official state election office feeds, currently covers 22 states; no projections). <a href="https://apnews.com/hub/election-2026" rel="noopener" target="_blank">AP elections</a> for a separate national race-call reference. Historical data: <a href="https://www.electionwrld.com/developers" rel="noopener" target="_blank">Election Wrld</a> (CC BY 4.0) using <a href="https://electionlab.mit.edu/data" rel="noopener" target="_blank">MIT Election Data and Science Lab</a> (CC0). 2026 boundary differences are flagged conservatively until verified for an individual district. Source coverage is not exhaustive.</div><div class="small muted" id="sourcesState" style="margin-top:10px">Checking feed connectivity…</div></div>
+<details class="civic-section v7-advanced-source" id="civicapi"><summary class="v7-advanced-label">Advanced source explorer · manual civicAPI search</summary><div>
+<div class="civic-head"><div><div class="module-number">DATA DESK / ADDITIONAL SOURCE</div><h2 id="civicHeading">civicAPI source cross-check</h2><div class="sub">Look up another provider's returns for a selected 2026 House, Senate, or governor contest.</div></div><span class="status-flag" id="civicHealthBadge">CONNECTOR NOT CHECKED</span></div>
+<p class="civic-explainer">This is a <strong>separate source comparison</strong>, not a fifth confirmed live-results feed. We never add one provider's vote totals to another's, automatically replace a sourced call, or count a test race. Browser security settings may prevent direct access to civicAPI; if so, VoteScope keeps the four existing feeds and shows an explicit error. Source: <a href="https://civicapi.org/" rel="noopener" target="_blank">civicAPI</a>.</p>
+<div class="civic-controls">
+<label>State<select aria-label="State for civicAPI lookup" class="pick" id="civicState"><option value="">Choose state…</option></select></label>
+<label>Office<select aria-label="Office for civicAPI lookup" class="pick" id="civicOffice"><option value="H">U.S. House</option><option value="S">U.S. Senate</option><option value="G">Governor</option></select></label>
+<label>House district<input aria-label="Congressional district number" id="civicDistrict" inputmode="numeric" placeholder="e.g. 7 (House only)" type="text"/></label>
+<button class="btn primary" id="civicLookup" type="button">↻ Check civicAPI</button>
+</div>
+<div aria-live="polite" class="civic-results" id="civicResults" role="status">Choose a state and an office, then select <strong>Check civicAPI</strong>. This source does not affect the main results unless explicitly verified and incorporated in a future release.</div>
+<p class="civic-note" id="civicLast">No results checked. Selected-race checks do not certify a winner, and vote totals from separate sources are never summed.</p>
+</div></details>
 <div class="foot"><span class="foot-mark">VS<span>.</span></span> VoteScope © 2026 Will York · Unofficial results · Refreshing does not accelerate publication by election offices · No polling forecast, probability, or presumed winner is generated.</div>
 </div>
-<div class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Race details"><div class="dialog"><button class="btn x" id="close" aria-label="Close details">✕</button><div id="dialogContent"></div></div></div>
+<div aria-label="Race details" aria-modal="true" class="detail" id="detail" role="dialog"><div class="dialog"><button aria-label="Close details" class="btn x" id="close">✕</button><div id="dialogContent"></div></div></div>
 <script>
 (()=>{'use strict';
 const STATES={AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'District of Columbia'};
@@ -644,9 +769,9 @@ function renderDirectionDials(){
  $('liveDialStatus').textContent=mov===null?'Need at least two changed checks':`${movers.length} changed race${movers.length===1?'':'s'}`;
  $('liveDialTime').textContent=lastMotionDate?'Last changed '+date(lastMotionDate):'Watching source updates';
  $('liveDialDetail').textContent=mov===null?'No updated, comparable margins have been observed during this browser session. Two successful source checks with additional counted votes are required.':`Last observed changes: median ${Math.abs(mov).toFixed(2)} pp ${mov>=0?'toward Democrats':'toward Republicans'} among ${movers.length} races where newly reported votes changed the two-party margin. This is not a national trend.`;
- $('liveMovedTotal').textContent=movers.length;
- $('liveMovedD').textContent=movers.filter(m=>m.shift>0).length;
- $('liveMovedR').textContent=movers.filter(m=>m.shift<0).length;
+ $('liveMovedTotal').textContent=movers.length?String(movers.length):'—';
+ $('liveMovedD').textContent=movers.length?String(movers.filter(m=>m.shift>0).length):'—';
+ $('liveMovedR').textContent=movers.length?String(movers.filter(m=>m.shift<0).length):'—';
  $('liveMovingRaces').innerHTML=movers.slice().sort((a,b)=>Math.abs(b.shift)-Math.abs(a.shift)).slice(0,4).map(m=>`<span>${esc(m.name)}: ${m.shift>=0?'← D ':'R '}${Math.abs(m.shift).toFixed(2)} pp${m.shift<0?' →':''}</span>`).join('');
  repositionNeedle('liveDialNeedle',mov,10);
 }
@@ -699,31 +824,13 @@ $('replayPrev').onclick=()=>{replaySelection=Math.max(0,replaySelection-1);rende
 $('replayNext').onclick=()=>{replaySelection=Math.min(replayHistory.length-1,replaySelection+1);renderPulseAndReplay()};
 $('replayLive').onclick=()=>{replaySelection=replayHistory.length-1;renderPulseAndReplay()};
 
-// Strict user-supplied precinct matching; never conflate offices or silently remap precincts.
-const PRECINCT_HEADERS=['year','office','state','district','county','precinct','party','votes'];let loadedPrecinctRows=[];
-function parseCSV(content){const rows=[],row=[];let val='',inQuotes=false;for(let i=0;i<content.length;i++){const c=content[i],n=content[i+1];if(inQuotes&&c==='"'&&n==='"'){val+='"';i++;continue}if(c==='"'){inQuotes=!inQuotes;continue}if(!inQuotes&&(c===','||c==='\n'||c==='\r')){row.push(val.trim());val='';if(c!==','){if(row.some(x=>x!==''))rows.push([...row]);row.length=0}if(c==='\r'&&n==='\n')i++;continue}val+=c}row.push(val.trim());if(row.some(x=>x!==''))rows.push([...row]);if(inQuotes)throw Error('CSV has an unclosed quoted field');return rows}
-function normDistrict(d){const v=String(d??'').trim().toUpperCase();return !v||v==='AL'||v==='AT-LARGE'||v==='0'||v==='00'?'AL':(/^\d+$/.test(v)?String(Number(v)):v)}
-function normUnit(x){return String(x??'').trim().toUpperCase().replace(/\s+/g,' ')}
-async function importPrecinctCSVs(files){let imported=0;try{for(const f of files){if(f.size>8000000)throw Error(f.name+' exceeds 8 MB');const rows=parseCSV(await f.text());if(!rows.length)continue;const headers=rows.shift().map(x=>x.toLowerCase().trim().replace(/^\ufeff/,''));if(!PRECINCT_HEADERS.every(h=>headers.includes(h)))throw Error(f.name+' must have all 8 required columns');const indices=PRECINCT_HEADERS.map(h=>headers.indexOf(h));for(const raw of rows){const v=indices.map(i=>raw[i]??'');const [year,office,state,district,county,precinct,party,votes]=v;
- const yr=Number(year),off=normUnit(office),p=normParty(party),num=Number(String(votes).replace(/,/g,''));
- if(![2022,2024,2026].includes(yr)||!['H','S','G'].includes(off)||!STATES[normUnit(state)]||!['D','R'].includes(p)||!Number.isFinite(num)||num<0||!normUnit(county)||!normUnit(precinct))continue;
- const item={yr,off,state:normUnit(state),district:normDistrict(district),county:normUnit(county),precinct:normUnit(precinct),party:p,votes:num};const matchIndex=loadedPrecinctRows.findIndex(x=>x.yr===item.yr&&x.off===item.off&&x.state===item.state&&x.district===item.district&&x.county===item.county&&x.precinct===item.precinct&&x.party===item.party);if(matchIndex>=0)loadedPrecinctRows[matchIndex]=item;else loadedPrecinctRows.push(item);imported++;
- }}if(!imported)throw Error('No valid precinct vote rows found. Check the office, year and party values.');$('matchedBadge').textContent=fmt(imported)+' vote rows loaded';$('matchedStatus').textContent='User-supplied precinct results, not an automatically refreshed feed.';renderMatched()}catch(err){$('matchedStatus').textContent='Import failed: '+err.message;}}
-$('matchedCsv').addEventListener('change',e=>{if(e.target.files.length)importPrecinctCSVs([...e.target.files]);e.target.value=''});
-$('matchedYear').addEventListener('change',renderMatched);
-function renderMatched(){const base=Number($('matchedYear').value),buckets=new Map();for(const r of loadedPrecinctRows){if(r.yr!==2026&&r.yr!==base)continue;const district=r.off==='H'?r.district:'STATEWIDE',k=[r.off,r.state,district,r.county,r.precinct].join('|'),id=r.yr+':'+k;let b=buckets.get(id);if(!b){b={unit:k,year:r.yr,d:0,r:0,hasD:false,hasR:false};buckets.set(id,b)}if(r.party==='D'){b.d+=r.votes;b.hasD=true}else{b.r+=r.votes;b.hasR=true}}
- const pairs=[];for(const [key,n] of buckets){if(!key.startsWith('2026:'))continue;const old=buckets.get(base+':'+n.unit);if(!old||!n.hasD||!n.hasR||!old.hasD||!old.hasR||n.d+n.r===0||old.d+old.r===0)continue;
- const m2026=(n.d-n.r)*100/(n.d+n.r),mOld=(old.d-old.r)*100/(old.d+old.r);pairs.push({unit:n.unit,cur:n,old,change:m2026-mOld})}
- if(!pairs.length){$('matchedResults').textContent=loadedPrecinctRows.length?`No exact ${base} / 2026 matches with both party totals and identical office, district, county and precinct. No matched swing calculated.`:'No matched precinct data loaded. The dashboard will not substitute incomplete district-wide totals.';return}
- let sumC=0,totC=0,sumB=0,totB=0;for(const x of pairs){sumC+=x.cur.d-x.cur.r;totC+=x.cur.d+x.cur.r;sumB+=x.old.d-x.old.r;totB+=x.old.d+x.old.r}
- const shift=sumC*100/totC-sumB*100/totB;
- $('matchedResults').innerHTML=`<strong>${fmt(pairs.length)} exact precinct matches · ${shift>=0?'D +':'R +'}${Math.abs(shift).toFixed(2)} pp</strong><div class="data-note">Two-party Democratic minus Republican margin across matched precincts, 2026 (${fmt(totC)} major-party votes) versus ${base} (${fmt(totB)} major-party votes). Both periods cover the same precinct IDs; no unmatched units are included. Different-year turnout can differ. ${pairs.length} precincts across ${new Set(pairs.map(p=>p.unit.split('|')[1])).size} states.</div><div class="pulse-table-wrap"><table class="pulse-table"><thead><tr><th>Matched precinct</th><th>2026 two-party votes</th><th>${base} two-party votes</th><th>Shift</th></tr></thead><tbody>${pairs.sort((a,b)=>Math.abs(b.change)-Math.abs(a.change)).slice(0,12).map(x=>`<tr><td>${esc(x.unit.replaceAll('|',' · '))}</td><td>${fmt(x.cur.d+x.cur.r)}</td><td>${fmt(x.old.d+x.old.r)}</td><td class="${x.change>=0?'direction-up':'direction-down'}">${x.change>=0?'D +':'R +'}${Math.abs(x.change).toFixed(2)} pp</td></tr>`).join('')}</tbody></table></div>`;
-}
+// Matched precinct data requires a verified automatic source; public CSV imports removed.
+function renderMatched(){}
 const _v5computeDelta=computeDelta;
 computeDelta=function(rs){_v5computeDelta(rs);recordSnap(rs)};
 const _v5render=render;
 render=function(){_v5render();renderPulseAndReplay()};
-renderPulseAndReplay();renderMatched();updateSourceLedger();
+renderPulseAndReplay();updateSourceLedger();
 
 
 /* civicAPI v2 connector: optional race-by-race cross-check. Strict date, geography,
@@ -786,6 +893,263 @@ $('civicLookup').addEventListener('click',civicLookUp);
    with no high-frequency polling against a free API. */
 let civicAutoAt=0;
 setInterval(()=>{if(paused||!civicSelectedRequest||civicBusy||Date.now()-civicAutoAt<180000)return;civicAutoAt=Date.now();civicLookUp()},60000);
+
+/* VoteScope v7: integrated race source checks, comparative trends, personal watchlist.
+   Does not alter primary feed selection, race calls, historical data or vote totals. */
+const v7CivicCache=new Map();
+let v7SourceOpen='';
+const v7CivicCacheMinutes=6;
+const v7CivicErrorMinutes=15;
+function v7LatestMovement(r){
+ if(replayHistory.length<2)return null;
+ const a=replayHistory[replayHistory.length-2],b=replayHistory[replayHistory.length-1];
+ const change=snapDifferences(a,b).find(x=>x.key===r.key);
+ return change||null;
+}
+function v7Dir(v){return !Number.isFinite(v)?'—':`${v>=0?'D +':'R +'}${Math.abs(v).toFixed(2)} pp`}
+function v7Primary(r){return r.total>0 ? `${fmt(r.total)} votes` : 'Not reporting'}
+function v7CivicLabel(key){const d=v7CivicCache.get(key);if(!d)return 'civicAPI not checked';if(d.status==='checking')return 'civicAPI checking…';if(d.status==='ok')return 'civicAPI checked';if(d.status==='blocked')return 'civicAPI unavailable';if(d.status==='test')return 'civicAPI test data rejected';return 'civicAPI: no verified match'}
+function v7RenderWatch(){
+ const items=[...watchSet].map(k=>({key:k,r:races.find(r=>r.key===k)}));
+ $('v7WatchCount').textContent=`${items.length} pinned`;
+ const grid=$('v7WatchGrid');
+ if(!items.length){grid.innerHTML='<div class="v7-watch-empty">No races pinned yet. Go to <strong>Race-by-race results</strong> and select the ☆ button at the bottom of a race card. Your selection stays here when you return.</div>';return}
+ grid.innerHTML=items.map(({key,r})=>{
+  if(!r)return `<article class="v7-watch-tile"><div class="v7-watch-tile-top"><strong>${esc(key)}</strong><button type="button" class="v7-watch-unpin" data-v7-remove="${esc(key)}" aria-label="Remove ${esc(key)}">Remove</button></div><div class="v7-explainer">No race record from the connected feeds. Kept in your watchlist.</div></article>`;
+  const m=v7LatestMovement(r),yr=Number($('baseline').value),hist=r.office==='H'?swing(r,yr):null;
+  const s=hist===null?'Not comparable':v7Dir(hist);
+  const movement=m?.swing!=null?v7Dir(m.swing):'No change recorded';
+  return `<article class="v7-watch-tile"><div class="v7-watch-tile-top"><div><button type="button" class="v7-watch-racename" data-v7-open="${esc(key)}">${esc(nameOf(r))}</button><div class="v7-explainer">${r.called?'Called by '+esc(r.calledBy||'source'):r.total?'Uncalled · leader '+esc(r.cands[0]?.name||'unknown'):'Awaiting reported votes'}</div></div><button type="button" class="v7-watch-unpin" data-v7-remove="${esc(key)}" aria-label="Unpin ${esc(nameOf(r))}" title="Remove from watchlist">★</button></div><div class="v7-watch-metrics"><div class="v7-watch-stat"><small>${r.office==='H'?'Historical swing vs '+yr:'Latest vote total'}</small><strong class="${hist>=0?'v7-info-d':'v7-info-r'}">${r.office==='H'?esc(s):esc(v7Primary(r))}</strong></div><div class="v7-watch-stat"><small>Change since prior saved snapshot</small><strong>${esc(movement)}</strong></div></div><div class="v7-watch-footer"><span>${esc(v7Primary(r))}</span><span>${esc(v7CivicLabel(key))}</span></div></article>`;
+ }).join('');
+}
+function v7TogglePin(key){watchSet.has(key)?watchSet.delete(key):watchSet.add(key);saveWatch();render();const content=$('historicalDetail');if(content&&openDetailKey===key){const r=races.find(x=>x.key===key);if(r)content.innerHTML=makeHistoryDetail(r)}}
+function v7OpenRace(key){
+ $('chamber').value='ALL';$('state').value='ALL';$('status').value='ALL';$('comparisonFilter').value='ALL';$('search').value='';$('sort').value='watch';limit=Math.max(40,races.length);render();
+ const i=shown.findIndex(x=>x.key===key);if(i>=0)showDetail(i);
+}
+$('v7WatchGrid').addEventListener('click',e=>{
+ const remove=e.target.closest('[data-v7-remove]'),open=e.target.closest('[data-v7-open]');
+ if(remove)v7TogglePin(remove.dataset.v7Remove);else if(open)v7OpenRace(open.dataset.v7Open);
+});
+$('v7WatchFind').onclick=()=>{$('races').scrollIntoView({behavior:'smooth',block:'start'})};
+$('v7WatchRefresh').onclick=()=>{if(!busy)update();else v7RenderWatch()};
+// A race card is already a button in the existing app. Place the pin *beside* it,
+// not inside a button; capture stops the old card click from opening the dialog.
+const v7OldRaceHtml=raceHtml;
+raceHtml=function(r,i){
+ let html=v7OldRaceHtml(r,i);const movement=v7LatestMovement(r);
+ const label=movement?.swing==null?'':`<div class="v7-inline-note">Since prior update: ${esc(v7Dir(movement.swing))}</div>`;
+ if(label)html=html.replace('</button>',label+'</button>');
+ const pin=`<button type="button" class="v7-pin" data-v7-pin="${esc(r.key)}" aria-pressed="${watchSet.has(r.key)}" aria-label="${watchSet.has(r.key)?'Unpin':'Pin'} ${esc(nameOf(r))}" title="${watchSet.has(r.key)?'Remove from watchlist':'Pin to my watchlist'}">${watchSet.has(r.key)?'★':'☆'}</button>`;
+ return `<div class="v7-race-frame">${html}${pin}</div>`;
+};
+$('raceGrid').addEventListener('click',e=>{
+ const pin=e.target.closest('[data-v7-pin]');if(!pin)return;
+ e.preventDefault();e.stopImmediatePropagation();v7TogglePin(pin.dataset.v7Pin);
+},true);
+
+// Real comparative charts: full-cycle House margin against partial 2026 House
+// returns (when district boundaries are comparable), plus observed update delta.
+function v7ChartRow(label,value){
+ if(value===null||!Number.isFinite(value))return `<div class="v7-chart-line"><small>${esc(label)}</small><span class="v7-explainer">Data unavailable</span><strong>—</strong></div>`;
+ const pos=Math.max(2,Math.min(98,50-value*.8));
+ return `<div class="v7-chart-line"><small>${esc(label)}</small><div class="v7-chart-bar" role="img" aria-label="Democratic minus Republican margin ${esc(v7Dir(value))}"><span class="v7-chart-dot" style="left:${pos.toFixed(1)}%"></span></div><strong class="${value>=0?'v7-info-d':'v7-info-r'}">${esc(v7Dir(value).replace(' pp',''))}</strong></div>`;
+}
+function v7HistoryMarkup(r){
+ const cm=curMargin(r),recent=v7LatestMovement(r);
+ let body='<div class="v7-inline-trend"><h4>Margins in context</h4>';
+ if(r.office==='H'){
+  const m22=yearMargin(archive(r,2022)),m24=yearMargin(archive(r,2024));
+  body+=v7ChartRow('2022 House final',m22)+v7ChartRow('2024 House final',m24)+v7ChartRow('2026 House partial',cm);
+  const comparable=realComparable(r);
+  body+=`<div class="v7-insight-row"><div class="v7-insight"><small>Observed change vs. 2024 House</small><strong>${comparable&&cm!==null&&m24!==null?esc(v7Dir(cm-m24)):'Not comparable'}</strong></div><div class="v7-insight"><small>Change since previous saved update</small><strong>${recent?.swing!=null?esc(v7Dir(recent.swing)):'Awaiting changed counts'}</strong></div></div>`;
+  body+=`<div class="v7-explainer">Full-election margins compared with <strong>incomplete 2026 returns</strong>. District boundaries must be comparable; this is not a matched-precinct swing or a forecast. ${comparable?'':'This district is excluded from direct historical swing calculations because its boundary comparison is unverified or changed.'}</div>`;
+ }else{
+  const pres=president2024[r.state],pm=pres?.total>0?(pres.dem-pres.rep)*100/pres.total:null;
+  body+=v7ChartRow('2024 statewide president',pm)+v7ChartRow('2026 '+(r.office==='S'?'Senate':'governor')+' partial',cm);
+  body+=`<div class="v7-insight-row"><div class="v7-insight"><small>Cross-office difference vs. 2024 presidential vote</small><strong>${cm!==null&&pm!==null?esc(v7Dir(cm-pm)):'No calculation'}</strong></div><div class="v7-insight"><small>Change since previous saved update</small><strong>${recent?.swing!=null?esc(v7Dir(recent.swing)):'Awaiting changed counts'}</strong></div></div>`;
+  body+='<div class="v7-explainer">The 2024 presidential vote is a different contest from this Senate or governor election. The comparison is statewide context only—not a same-race overperformance measure. It does not predict the final result.</div>';
+ }
+ body+='</div>';return body;
+}
+
+// civicAPI is a secondary source: do not treat access errors as zero votes,
+// combine totals, accept test data, or infer a race call.
+function v7DatePresent(x){return !!civicPick(x?.election_date,x?.electionDate,x?.date,x?.election?.date)}
+function v7CivicStatePresent(x){return !!civicPick(x?.province,x?.state_code,x?.state,x?.statePostal,x?.jurisdiction?.state)}
+function v7VerifiedMeta(x,r){
+ if(civicTestFlag(x)||!civicDateMatch(x)||!civicStateMatch(x,r.state)||!civicOfficeMatch(x,r.office)||!civicDistrictMatch(x,r.office,r.district==='00'?'0':String(Number(r.district)||'')))return false;
+ // If a record doesn't include an election date, it must at least explicitly
+ // identify 2026 in its title; avoid silently matching a different cycle.
+ if(!v7DatePresent(x)&&!/(^|\D)2026(\D|$)/.test(civicTitle(x)))return false;
+ return true;
+}
+function v7CivicCandidatesMatch(cands,r){const major=r.cands.filter(c=>['D','R'].includes(c.party));return cands.some(c=>major.some(p=>compactName(c.name)===compactName(p.name)));}
+async function v7GetCivic(r,force=false){
+ const prior=v7CivicCache.get(r.key),now=Date.now();
+ if(prior?.status==='checking')return prior;
+ if(!force&&prior&&now-prior.at<60000*(prior.status==='ok'?v7CivicCacheMinutes:v7CivicErrorMinutes))return prior;
+ const entry={status:'checking',at:now};v7CivicCache.set(r.key,entry);v7RenderCivic(r);v7RenderWatch();
+ try{
+  const qs=new URLSearchParams({country:'US',province:r.state,startDate:'2026-11-03',endDate:'2026-11-03',query:r.office==='H'?'House':r.office==='S'?'Senate':'Governor',limit:'250'});
+  const search=await civicFetchJson('/race/search?'+qs.toString());
+  if(civicTestFlag(search)){entry.status='test';throw new Error('Test data rejected')}
+  const candidates=civicArray(search).filter(x=>v7VerifiedMeta(x,r));
+  const targets=candidates.map(x=>({id:civicId(x),meta:x})).filter(x=>x.id).slice(0,3);
+  let validated=[];
+  for(const target of targets){
+   const raw=await civicFetchJson('/race/'+encodeURIComponent(target.id)+'?light');
+   const obj=civicObject(raw?.race||raw?.data||raw);
+   if(civicTestFlag(raw)||civicTestFlag(obj)){entry.status='test';continue}
+   if(!civicDateMatch(obj)||!civicStateMatch(obj,r.state))continue;
+   const cs=civicCandidates(raw);
+   if(!cs.length||!v7CivicCandidatesMatch(cs,r))continue;
+   validated.push({id:target.id,cs,title:civicTitle(target.meta)||civicTitle(obj),stamp:civicPick(obj.updated_at,obj.last_updated,obj.lastUpdated,obj.as_of,raw?.updated_at)||null});
+  }
+  if(validated.length){
+   entry.status='ok';entry.detail=validated[0];entry.at=Date.now();
+  }else if(entry.status!=='test'){entry.status='missing';entry.at=Date.now()}
+ }catch(err){entry.status=entry.status==='test'?'test':'blocked';entry.at=Date.now()}
+ v7CivicCache.set(r.key,entry);v7RenderCivic(r);v7RenderWatch();return entry;
+}
+function v7CivicMarkup(r){
+ const c=v7CivicCache.get(r.key);
+ let html='<div class="v7-source-status" id="v7CivicInner"><div class="v7-source-head"><strong>Independent source check · civicAPI</strong><button type="button" id="v7CivicRecheck" class="btn small">↻ Recheck</button></div>';
+ if(!c)html+='<p class="v7-explainer">Not checked. Open this race to request the secondary source. Your primary result is always shown separately.</p>';
+ else if(c.status==='checking')html+='<p class="v7-explainer">Checking another publisher for this exact election, office, state and district…</p>';
+ else if(c.status==='ok'){
+  html+=`<p class="v7-status-ok">Secondary source returned candidate totals.</p><div class="v7-explainer">Retrieved ${esc(date(c.at))} · Source count updated ${c.detail.stamp?esc(date(c.detail.stamp)):'time not supplied'} · No totals have been combined. Differences may reflect reporting time.</div>`;
+  const prim=new Map(r.cands.map(x=>[compactName(x.name),x]));
+  html+='<table class="v7-compare-table"><thead><tr><th>Candidate</th><th>VoteScope</th><th>civicAPI</th><th>Difference*</th></tr></thead><tbody>';
+  html+=c.detail.cs.slice(0,7).map(x=>{const p=prim.get(compactName(x.name));return `<tr><td>${esc(x.name)} (${esc(x.party)})</td><td>${p?fmt(p.votes):'—'}</td><td>${fmt(x.votes)}</td><td>${p?((x.votes-p.votes)>0?'+':'')+fmt(x.votes-p.votes):'—'}</td></tr>`}).join('')+'</tbody></table>';
+  html+=`<div class="v7-explainer">* civicAPI count minus VoteScope primary count. This is a cross-provider comparison, not newly reported votes. <a href="${CIVIC_BASE}/race/${encodeURIComponent(c.detail.id)}" target="_blank" rel="noopener">Inspect civicAPI race record ↗</a></div>`;
+ }else{
+  const msg=c.status==='blocked'?'Direct browser access to civicAPI failed (possibly a cross-origin restriction); the primary results remain intact.':c.status==='test'?'The source returned a record flagged as test data and VoteScope rejected it.':'No safely matched, candidate-level civicAPI result was found for this contest.';
+  html+=`<p class="v7-status-bad">${esc(msg)}</p><div class="v7-explainer"><a href="https://civicapi.org/results" target="_blank" rel="noopener">View civicAPI's results directly ↗</a></div>`;
+ }
+ html+='</div>';return html;
+}
+function v7RenderCivic(r){if(!$('detail').classList.contains('open')||openDetailKey!==r.key)return;const slot=$('v7CivicSlot');if(slot){slot.innerHTML=v7CivicMarkup(r);const btn=$('v7CivicRecheck');if(btn)btn.onclick=()=>v7GetCivic(r,true)}}
+const v7OldShowDetail=showDetail;
+showDetail=function(i){const r=shown[i];if(!r)return;v7OldShowDetail(i);
+ const content=$('dialogContent');
+ // Previous edition's separate navigation button is replaced with the integrated panel.
+ for(const btn of content.querySelectorAll('button'))if(btn.textContent.trim()==='Cross-check this race with civicAPI')btn.remove();
+ const comparison=document.createElement('div');comparison.id='v7ContextSlot';comparison.innerHTML=v7HistoryMarkup(r);content.append(comparison);
+ const slot=document.createElement('div');slot.id='v7CivicSlot';content.append(slot);v7RenderCivic(r);
+ // Request the secondary source only when a viewer opens a race; no indiscriminate
+ // polling of hundreds of civicAPI endpoints.
+ v7GetCivic(r).catch(()=>{});
+};
+// Rerender watchlist alongside the existing dashboard. No changes to its feeds.
+const v7OldRender=render;
+render=function(){v7OldRender();v7RenderWatch()};
+$('baseline').addEventListener('change',v7RenderWatch);
+v7RenderWatch();
+
+
+/* VoteScope v8: one map, no manual uploads, no false-zero swings. */
+const VS8_TILE=[
+ ['AK',0,7],['HI',1,7],['WA',1,0],['OR',1,1],['CA',1,2],['NV',2,2],['ID',2,1],['MT',3,0],['WY',3,1],['UT',3,2],['AZ',3,3],
+ ['ND',4,0],['SD',4,1],['CO',4,2],['NM',4,3],['NE',5,1],['KS',5,2],['OK',5,3],['TX',5,4],['MN',5,0],
+ ['IA',6,1],['MO',6,2],['AR',6,3],['LA',6,4],['WI',6,0],['IL',7,1],['MS',7,4],['MI',7,0],['IN',8,1],['KY',8,2],['TN',8,3],['AL',8,4],
+ ['OH',9,1],['WV',9,2],['GA',9,4],['FL',10,5],['NY',11,0],['PA',10,1],['VA',10,2],['NC',10,3],['SC',10,4],
+ ['VT',12,0],['NH',13,0],['ME',14,0],['MA',12,1],['CT',12,2],['RI',13,2],['NJ',11,2],['DE',11,3],['MD',11,4],['DC',12,4]
+];
+const VS8_FIPS={AL:'01',AK:'02',AZ:'04',AR:'05',CA:'06',CO:'08',CT:'09',DE:'10',DC:'11',FL:'12',GA:'13',HI:'15',ID:'16',IL:'17',IN:'18',IA:'19',KS:'20',KY:'21',LA:'22',ME:'23',MD:'24',MA:'25',MI:'26',MN:'27',MS:'28',MO:'29',MT:'30',NE:'31',NV:'32',NH:'33',NJ:'34',NM:'35',NY:'36',NC:'37',ND:'38',OH:'39',OK:'40',OR:'41',PA:'42',RI:'44',SC:'45',SD:'46',TN:'47',TX:'48',UT:'49',VT:'50',VA:'51',WA:'53',WV:'54',WI:'55',WY:'56'};
+const VS8_BY_FIPS=Object.fromEntries(Object.entries(VS8_FIPS).map(([k,v])=>[v,k]));
+let vs8Focus=null,vs8Geo=null,vs8MapStyle='schematic',vs8GeoError='';
+const vs8SvgNS='http://www.w3.org/2000/svg';
+const vs8Make=(name,attrs={})=>{const e=document.createElementNS(vs8SvgNS,name);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));return e};
+function vs8Options(){const office=$('vs8Office').value,metric=$('vs8Metric').value;
+ if(office!=='H'&&(metric==='2024'||metric==='2022')){$('vs8Metric').value='current'}
+ for(const opt of $('vs8Metric').options)if(opt.value==='2024'||opt.value==='2022')opt.disabled=office!=='H';
+ return{office,metric:$('vs8Metric').value};}
+function vs8StateStats(state,office,metric){
+ const base=races.filter(r=>r.state===state&&r.office===office&&r.total>0),pairs=base.filter(r=>curMargin(r)!==null);
+ let contributing=[],label='';
+ if(metric==='current'){contributing=pairs.map(r=>({r,v:curMargin(r)}));label='Partial D–R margin';}
+ else if(metric==='2024'||metric==='2022'){contributing=pairs.map(r=>({r,v:swing(r,Number(metric))})).filter(o=>o.v!==null);label='Observed change vs. '+metric+' House';}
+ else{contributing=(recentMotion||[]).filter(x=>x.key.startsWith(office+'-'+state+'-')||x.key===office+'-'+state).map(x=>({r:races.find(r=>r.key===x.key),v:x.shift})).filter(x=>x.r&&Number.isFinite(x.v));label='Movement since last changed check';}
+ return{state,office,metric,base,contributing,value:motionMedian(contributing.map(x=>x.v)),label};
+}
+const vs8ColorRgb=(hex)=>[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16));
+function vs8Mix(a,b,p){const u=vs8ColorRgb(a),v=vs8ColorRgb(b);return'#'+u.map((x,i)=>Math.round(x+(v[i]-x)*p).toString(16).padStart(2,'0')).join('')}
+function vs8Fill(value){if(value===null)return '#e4e7e5';const q=Math.max(.22,Math.min(.95,Math.abs(value)/22));return vs8Mix('#edf1f1',value>=0?'#2b67aa':'#bc4947',q)}
+function vs8Text(value,metric){if(value===null||!Number.isFinite(value))return 'No comparable data';const positive=value>=0;
+ if(metric==='current')return (positive?'D +':'R +')+Math.abs(value).toFixed(1)+' pp';
+ return (positive?'← D +':'R +')+Math.abs(value).toFixed(2)+' pp'+(positive?'':' →');}
+function vs8SVGState(code,shape,x,y,stat){const svg=$('vs8Svg'),title=vs8Make('title');title.textContent=STATES[code]+' — '+vs8Text(stat.value,stat.metric);shape.setAttribute('class','vs8-map-state'+(vs8Focus===code?' selected':''));shape.setAttribute('fill',vs8Fill(stat.value));shape.setAttribute('data-vs8-state',code);shape.setAttribute('role','button');shape.setAttribute('tabindex','0');shape.setAttribute('aria-label',title.textContent+'; select state');shape.appendChild(title);svg.appendChild(shape);
+ if(x!==null&&y!==null){const label=vs8Make('text',{x,y,class:'vs8-map-label'});label.textContent=code;svg.appendChild(label)}
+}
+function vs8TileMap(stats){const svg=$('vs8Svg');svg.replaceChildren(vs8Make('title'));svg.firstChild.textContent='Schematic 50-state election map; select a state';svg.setAttribute('viewBox','0 0 1000 590');
+ const w=59,h=51,gap=5;for(const [code,col,row] of VS8_TILE){const x=20+col*(w+gap),y=24+row*(h+gap),rect=vs8Make('rect',{x,y,width:w,height:h,rx:3,ry:3,stroke:'#fff','stroke-width':2});vs8SVGState(code,rect,x+w/2,y+h/2+4,stats[code]);}
+ $('vs8MapType').textContent='State tile map';$('vs8Fallback').textContent=vs8GeoError?'Geographic map unavailable; using a schematic.':'Schematic geography; state positions are simplified.';
+}
+function vs8GeoMap(stats){const svg=$('vs8Svg');svg.replaceChildren(vs8Make('title'));svg.firstChild.textContent='50-state election map; select a state';svg.setAttribute('viewBox','0 0 1000 570');
+ for(const {code,paths,center} of vs8Geo){const path=vs8Make('path',{d:paths.join(' ')});vs8SVGState(code,path,center?.[0]??null,center?.[1]??null,stats[code]);}
+ // Non-contiguous states are drawn as clearly separated inset tiles.
+ for(const [code,x,y] of [['AK',80,493],['HI',160,493]]){const rect=vs8Make('rect',{x,y,width:66,height:49,rx:2});vs8SVGState(code,rect,x+33,y+29,stats[code])}
+ $('vs8MapType').textContent='U.S. state boundaries';$('vs8Fallback').textContent='Alaska and Hawaii shown as insets.';
+}
+function vs8GeoProject(lon,lat){return[50+(lon+125)*13.5,29+(50-lat)*17.0]}
+function vs8ParseTopo(top){
+ if(!top||top.type!=='Topology'||!top.arcs||!top.objects)throw Error('Unsupported state map');
+ const source=Object.values(top.objects).find(o=>Array.isArray(o.geometries)&&o.geometries.length>=48);
+ if(!source)throw Error('No states in map');
+ const tf=top.transform||{scale:[1,1],translate:[0,0]},decoded=new Map();
+ function arc(i){const idx=i<0?~i:i;if(!decoded.has(idx)){const arr=[];let x=0,y=0;for(const p of top.arcs[idx]){x+=p[0];y+=p[1];arr.push([x*tf.scale[0]+tf.translate[0],y*tf.scale[1]+tf.translate[1]])}decoded.set(idx,arr)}let raw=decoded.get(idx);return i<0?raw.slice().reverse():raw}
+ function rings(arcs){return arcs.map(idxs=>{let coords=[];for(const id of idxs){const pts=arc(id);coords.push(...(coords.length?pts.slice(1):pts))}return coords})}
+ const out=[];
+ for(const geo of source.geometries){const props=geo.properties||{},rawCode=String(props.STUSPS||props.stusps||props.postal||props.abbr||props.state||'').toUpperCase(),fips=String(geo.id||props.STATEFP||props.GEOID||'').padStart(2,'0');const code=STATES[rawCode]?rawCode:VS8_BY_FIPS[fips];
+ if(!code||code==='AK'||code==='HI'||!geo.arcs)continue;
+ const polygons=geo.type==='Polygon'?[geo.arcs]:geo.type==='MultiPolygon'?geo.arcs:[];
+ const paths=[];let bestArea=-1,center=null;
+ for(const poly of polygons)for(const ring of rings(poly)){
+  const points=ring.filter(([lon,lat])=>Number.isFinite(lon)&&Number.isFinite(lat)&&lon>=-127&&lon<=-65&&lat>=23&&lat<=51).map(([lon,lat])=>vs8GeoProject(lon,lat));
+  if(points.length<3)continue;
+  paths.push('M'+points.map(p=>p.map(x=>x.toFixed(1)).join(',')).join('L')+'Z');
+  const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);const minx=Math.min(...xs),maxx=Math.max(...xs),miny=Math.min(...ys),maxy=Math.max(...ys);const area=(maxx-minx)*(maxy-miny);
+  if(area>bestArea){bestArea=area;center=[(minx+maxx)/2,(miny+maxy)/2+4]}
+ }
+ if(paths.length)out.push({code,paths,center});
+ }
+ if(out.length<45)throw Error('Incomplete geographic shapes');return out;
+}
+async function vs8LoadGeo(){const src='https://www.electionwrld.com/geo/states.topo.json';const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),10000);
+ try{const resp=await fetch(src,{cache:'force-cache',credentials:'omit',signal:ctrl.signal});if(!resp.ok)throw Error('Map fetch failed');vs8Geo=vs8ParseTopo(await resp.json());vs8MapStyle='geographic';vs8Render();}
+ catch(e){vs8GeoError='Map endpoint unavailable';vs8MapStyle='schematic';vs8Render();}
+ finally{clearTimeout(timeout)}}
+function vs8Render(){const {office,metric}=vs8Options(),stats={};for(const state of Object.keys(STATES))stats[state]=vs8StateStats(state,office,metric);
+ const valid=Object.values(stats).filter(x=>x.value!==null),all=valid.flatMap(x=>x.contributing),median=motionMedian(all.map(x=>x.v));
+ $('vs8Active').textContent=String(valid.length);$('vs8Rows').textContent=String(all.length);
+ $('vs8Coverage').textContent=valid.length+' of 51 jurisdictions have usable '+(metric==='current'?'reported margins':'comparison data');
+ const n=$('vs8National');n.textContent=median===null?'Not available':vs8Text(median,metric);n.className='vs8-summary-number '+(median===null?'':median>=0?'d':'r');
+ $('vs8NationalSub').textContent=median===null?'No supported comparisons at this time. This is not a zero swing.':`Median across ${all.length} contributing ${office==='H'?'House districts':office==='S'?'Senate races':'governor races'}; partial, incomplete returns, not a national popular-vote estimate.`;
+ const method=metric==='current'?'Each state shows the median D–R margin in its reporting '+(office==='H'?'House districts':office==='S'?'Senate race(s)':'governor race(s)')+'. Negative values mean a Republican lead.':metric==='new'?'Each state shows the median margin movement in races with new votes during the last changed check. No change observed is not necessarily a zero change.':`House districts only. The ${metric} comparison is against final House results in districts with comparable boundaries; 2026 counts are incomplete and do NOT come from matched precincts.`;
+ $('vs8Method').textContent=method+' Gray states have no supported data.';
+ $('vs8MapStatus').textContent=`${races.filter(r=>r.total>0).length} races reporting · ${lastOk?'checked '+date(lastOk):'awaiting check'}`;
+ if(vs8MapStyle==='geographic'&&vs8Geo)vs8GeoMap(stats);else vs8TileMap(stats);
+ const focus=stats[vs8Focus];$('vs8FocusName').textContent=focus?STATES[focus.state]: 'Select a state';
+ const f=$('vs8FocusValue');f.textContent=focus?vs8Text(focus.value,metric):'—';f.className='vs8-focus-value '+(focus?.value===null||!focus?'':focus.value>=0?'d':'r');
+ $('vs8FocusNote').textContent=focus?`${focus.base.length} ${office==='H'?'House districts':office==='S'?'Senate contests':'governor contests'} reporting votes; ${focus.contributing.length} with a usable ${metric==='current'?'margin': 'comparison'}. ${focus.value===null?'No valid zero should be inferred.':''}`:'Select a state to inspect the actual reporting coverage and open its races.';
+ $('vs8SeeRaces').disabled=!vs8Focus;
+ let top=all.filter(o=>o.v!==null&&Math.abs(o.v)>.005&&o.r).sort((a,b)=>Math.abs(b.v)-Math.abs(a.v));
+ const dem=top.filter(o=>o.v>0).slice(0,6),rep=top.filter(o=>o.v<0).slice(0,6);
+ function rows(list,id,ctype){$(id).innerHTML=list.length?list.map(o=>`<button type="button" data-vs8-race="${esc(o.r.key)}"><span>${esc(nameOf(o.r))}</span><b class="${ctype}">${esc(vs8Text(o.v,metric))}</b></button>`).join(''):`<p>${metric==='current'?'No reporting races with that party ahead.':'No observed shifts in this direction with supported data.'}</p>`;}
+ rows(dem,'vs8DList','d');rows(rep,'vs8RList','r');$('vs8DCount').textContent=dem.length?'Showing '+dem.length:'—';$('vs8RCount').textContent=rep.length?'Showing '+rep.length:'—';
+}
+function vs8ChooseState(code){if(!STATES[code])return;vs8Focus=code;vs8Render()}
+$('vs8Svg').addEventListener('click',e=>{const p=e.target.closest('[data-vs8-state]');if(p)vs8ChooseState(p.dataset.vs8State)});
+$('vs8Svg').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const p=e.target.closest('[data-vs8-state]');if(p){e.preventDefault();vs8ChooseState(p.dataset.vs8State)}}});
+function vs8OpenRaces(state){$('state').value=state||'ALL';$('chamber').value=$('vs8Office').value;$('status').value='ALL';$('search').value='';limit=36;render();$('races').scrollIntoView({behavior:'smooth',block:'start'})}
+$('vs8SeeRaces').addEventListener('click',()=>{if(vs8Focus)vs8OpenRaces(vs8Focus)});
+$('vs8Reset').addEventListener('click',()=>{vs8Focus=null;vs8Render()});
+$('vs8Office').addEventListener('change',vs8Render);$('vs8Metric').addEventListener('change',vs8Render);
+for(const id of ['vs8DList','vs8RList'])$(id).addEventListener('click',e=>{const b=e.target.closest('[data-vs8-race]');if(!b)return;const rr=races.find(x=>x.key===b.dataset.vs8Race);if(rr)vs8OpenRaces(rr.state)});
+const vs8PreviousRender=render;
+render=function(){vs8PreviousRender();vs8Render()};
+vs8Render();vs8LoadGeo();
 
 setInterval(tick,500);render();update();
 })();
