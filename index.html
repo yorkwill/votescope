@@ -343,6 +343,37 @@ body .board .panel{min-width:0}
 #dsa{margin-top:35px}
 @media(max-width:780px){.terrain-overview{grid-template-columns:repeat(2,minmax(0,1fr))}.terrain-overview>div:nth-child(2){border-right:0}.terrain-overview>div:nth-child(-n+2){border-bottom:1px solid var(--line)}body .board{grid-template-columns:1fr}}
 @media(max-width:480px){.terrain-overview>div{padding:12px}.terrain-overview strong{font-size:26px}.hist-row{gap:5px}}
+
+/* VoteScope v10: results-first, no speculative outcomes */
+#map,#direction,#pulse,#v7watch,#terrain,#performance,#history,#sourceLedger,#governorPowerHeading,#civicapi,
+.board > .panel:nth-child(3),.replay-stats > .replay-stat:nth-child(3){display:none!important}
+/* The source ledger remains accessible behind a simple details control. */
+#sourceLedger{display:block!important;margin-top:30px;padding-top:14px;border-top:1px solid var(--line)}
+#sourceLedger .source-grid{font-size:12px}
+.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.board>.panel{margin:0;min-width:0}
+.v10-breakdown{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.v10-stat{padding:15px 8px 15px 11px;min-width:0;border-left:1px solid var(--line)}
+.v10-stat:first-child{border-left:0}
+.v10-stat span{display:block;font-size:10px;line-height:1.35;text-transform:uppercase;font-weight:800;letter-spacing:.08em;color:var(--muted);min-height:30px}
+.v10-stat b{display:block;font-family:Georgia,serif;font-size:clamp(24px,2.8vw,39px);letter-spacing:-.05em;margin:5px 0 0}
+.v10-stat.d b{color:var(--blue)}.v10-stat.r b{color:var(--red)}
+.v10-stack{display:flex;height:13px;overflow:hidden;background:#e1e5e3;margin-top:16px}
+.v10-stack span{display:block;height:100%;transition:width .32s ease}
+.v10-called-d{background:#316aad}.v10-lead-d{background:#91b6d9}.v10-unresolved{background:#d5d9d8}.v10-lead-r{background:#e5a4a2}.v10-called-r{background:#bd4d49}
+.v10-insight{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;min-height:58px}
+.v10-coverage{font-size:12px;font-weight:700;color:#516975;margin-top:7px}
+.v10-race-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;font-size:12px}
+.v10-race-meta span{background:#edf1f2;padding:4px 7px;border:1px solid #dbe1e3}
+.v10-replay-lead{font-size:12px;margin-top:6px;color:#465b65;line-height:1.6}
+.replay-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.replay-stat strong{font-size:25px}
+#dsa .dsa-grid .dsa-row{border-bottom:1px solid var(--line)}
+#races,.endorsement-section{scroll-margin-top:28px}
+.v10-source-help{font-size:12px;color:var(--muted);margin-top:8px}
+@media (max-width:900px){.board{grid-template-columns:1fr}.v10-stat span{font-size:10px}.v10-stat b{font-size:30px}}
+@media (max-width:460px){.v10-breakdown{grid-template-columns:repeat(5,minmax(0,1fr))}.v10-stat{padding:12px 3px 12px 5px}.v10-stat span{font-size:8px;letter-spacing:0;min-height:33px}.v10-stat b{font-size:23px}.board>.panel{padding:14px}.replay-stats{gap:8px}}
+
 </style>
 </head>
 <body>
@@ -528,8 +559,8 @@ function raceHtml(r,i){const shares=r.total?r.cands.slice(0,6).map(c=>`<span sty
 function filtered(){const ch=$('chamber').value,st=$('state').value,stt=$('status').value,q=$('search').value.toLowerCase().trim(),sort=$('sort').value;let a=races.filter(r=>(ch==='ALL'||r.office===ch)&&(st==='ALL'||r.state===st)&&(stt==='ALL'||stt==='REPORTING'&&r.total>0||stt==='UNCALLED'&&!r.called||stt==='CALLED'&&r.called)&&(!q||(nameOf(r)+' '+r.cands.map(c=>c.name).join(' ')).toLowerCase().includes(q)));if(sort==='closest')a.sort((x,y)=>(x.cands.length>1&&x.total?(x.cands[0].votes-x.cands[1].votes)/x.total:10)-(y.cands.length>1&&y.total?(y.cands[0].votes-y.cands[1].votes)/y.total:10));else if(sort==='votes')a.sort((x,y)=>y.total-x.total);else if(sort==='state')a.sort((x,y)=>x.state.localeCompare(y.state)||x.office.localeCompare(y.office)||Number(x.district)-Number(y.district));else a.sort((x,y)=>(Date.parse(y.stamp)||0)-(Date.parse(x.stamp)||0)||y.delta-x.delta||y.total-x.total);return a}
 let shown=[];function render(){board('house',435,0,0);board('senate',100,34,31);const a=filtered();shown=a;const g=$('raceGrid');g.innerHTML=a.slice(0,limit).map(raceHtml).join('');$('more').style.display=a.length>limit?'block':'none';const returning=races.filter(r=>r.total>0).length;const called=races.filter(r=>r.called).length;$('raceCount').textContent=`${a.length} matching races · ${returning} with votes in connected feeds · ${called} sourced calls. Feed coverage varies by state.`;if(!a.length){g.innerHTML=`<div class="emptybox" style="grid-column:1/-1"><strong>${races.length?'No races match these filters.':'Waiting for reported election-night results.'}</strong><div style="margin-top:8px">${races.length?'Try a different state or filter.':'When publishers release the first counts, the race list will populate automatically. No votes are invented.'}</div></div>`;}const nd=races.filter(r=>r.delta>0);$('newVotes').textContent=nd.length?`${nd.length} races have additional votes since last check`:'No newly counted votes detected';}
 function showDetail(i){const r=shown[i];if(!r)return;$('dialogContent').innerHTML=`<div class="eyebrow">2026 · Unofficial returns</div><h3>${esc(nameOf(r))}</h3><div style="margin:6px 0 20px">${badge(r)} <span class="muted">${r.total?fmt(r.total)+' votes':'Votes not reported'}</span></div>${topCandidates(r)}<hr style="border:none;border-top:1px solid #294052;margin:20px 0"><p><strong>Current margin:</strong> ${esc(margin(r))}</p><p><strong>Reported progress:</strong> ${r.pctIn==null?'Not supplied':r.pctIn.toFixed(1)+'% (source-defined reporting unit; not necessarily votes counted)'}</p><p><strong>Race status:</strong> ${r.called?'Called by '+esc(r.calledBy):r.total?'A candidate is currently leading; no race call':'No returns received'}</p><p><strong>Source:</strong> ${esc(r.source)}</p><p><strong>Source update:</strong> ${esc(date(r.stamp))}</p><p><a href="${esc(r.srcUrl)}" target="_blank" rel="noopener">Inspect source ↗</a></p><div class="cap">An early lead, or 100% of precincts reported, does not by itself establish a certified result.</div>`;$('detail').classList.add('open');civicAddDetailAction(r)}
-const sourceNames=['2026 race roster','The People’s Tally','Open America House','Open America Senate','Open America Governor'];
-const sourceUrls=['https://thepeoplestally.com/data/core.json','https://thepeoplestally.com/data/results.json','https://openamerica.io/elections/results.json?year=2026&office=House','https://openamerica.io/elections/results.json?year=2026&office=Senate','https://openamerica.io/elections/results.json?year=2026&office=Governor'];
+const sourceNames=['2026 race roster','The People’s Tally','Open America House','Open America Senate'];
+const sourceUrls=['https://thepeoplestally.com/data/core.json','https://thepeoplestally.com/data/results.json','https://openamerica.io/elections/results.json?year=2026&office=House','https://openamerica.io/elections/results.json?year=2026&office=Senate'];
 const resultFeedCache=new Map(),sourceHealth=new Map();
 function updateSourceLedger(){
  $('sourceLedgerRows').innerHTML=sourceNames.map((name,i)=>{const m=sourceHealth.get(i),ok=!!m?.lastSuccess;
@@ -543,18 +574,18 @@ async function update(){
   try{
    let records=[];if(i===0){records=normalizeCore(z.value);roster=records;}
    else if(i===1){latestTally=z.value;records=normalizeTally(z.value)}
-   else records=normalizeOA(z.value,['','','House','Senate','Governor'][i]);
+   else records=normalizeOA(z.value,['','','House','Senate'][i]);
    if(i!==0){resultFeedCache.set(i,records);freshResults++}
    let stamp=i===1?z.value.generated_at:z.value.as_of;
    if(!stamp)stamp=records.map(r=>Date.parse(r.stamp)).filter(Number.isFinite).sort((a,b)=>b-a)[0]||null;
    sourceHealth.set(i,{lastSuccess:Date.now(),sourceAt:stamp,count:records.length,stale:z.value?.stale===true,error:null});successful++;
   }catch(err){const old=sourceHealth.get(i)||{};sourceHealth.set(i,{...old,error:'Unexpected feed format: '+String(err.message).slice(0,90)})}
  });
- const a=resultFeedCache.get(1)||[],office=[2,3,4].flatMap(i=>resultFeedCache.get(i)||[]),live=merge(a,office);
+ const a=resultFeedCache.get(1)||[],office=[2,3].flatMap(i=>resultFeedCache.get(i)||[]),live=merge(a,office);
  if(freshResults){
   const combined=new Map(roster.map(x=>[x.key,x]));for(const x of live)combined.set(x.key,x);
-  races=[...combined.values()];computeDelta(races);lastOk=new Date();
-  $('feedStatus').textContent=`Results checked · ${freshResults} of 4 result feeds responding`;
+  races=[...combined.values()].filter(x=>x.office==='H'||x.office==='S');computeDelta(races);lastOk=new Date();
+  $('feedStatus').textContent=`Results checked · ${freshResults} of ${sourceUrls.length-1} result feeds responding`;
   const newest=[...races].map(x=>Date.parse(x.stamp)).filter(Number.isFinite).sort((a,b)=>b-a)[0];
   $('meta').textContent=`${races.length} races in roster and connected feeds · ${races.filter(x=>x.total>0).length} reporting votes · ${newest?'Newest source timestamp '+date(newest):'No source vote timestamp available'}`;
   $('checked').textContent='Checked '+date(lastOk);render();
@@ -1282,6 +1313,144 @@ for(const o of [...$('sort').options])if(['swingD','swingR','watch'].includes(o.
 // Ensure the hidden compatibility filter cannot suppress valid races.
 $('comparisonFilter').value='ALL';
 vs9LoadHistory();
+
+
+/* VoteScope v10 — House/Senate control, actual leads vs. source-verified calls,
+   honest browser replay and candidate-specific DSA coverage. */
+(function initV10(){
+ const hidden=['map','direction','pulse','v7watch','terrain','performance','history'];
+ hidden.forEach(id=>{const n=$(id);if(n)n.setAttribute('aria-hidden','true')});
+ // Make DSA results easy to find without scrolling through hundreds of race cards.
+ const dsa=$("dsa"),replay=$("replay");if(dsa&&replay)replay.insertAdjacentElement('afterend',dsa);
+ const nav=document.querySelector('nav');if(nav){for(const a of nav.querySelectorAll('a[href^="#"]')){
+  const id=a.getAttribute('href').slice(1);
+  if(hidden.includes(id)||['governors','civicapi','governorPowerHeading'].includes(id))a.style.display='none';
+ }}
+ // Remove a governor-only selector which is no longer relevant.
+ const pulseG=$('pulseOffice')?.querySelector('option[value="G"]');if(pulseG)pulseG.remove();
+ const houseSection=document.querySelector('.board > .panel:nth-child(1)');
+ const senateSection=document.querySelector('.board > .panel:nth-child(2)');
+ const makeBoard=(node,office)=>{
+  if(!node)return;
+  const house=office==='H',label=house?'House':'Senate';
+  node.innerHTML=`<h2>U.S. ${label}</h2><div class="cap">${house?'435 seats · 218 for an outright majority':'100 seats · 35 contests in 2026 · 51 for an outright majority'}</div>
+  <div class="v10-stack" aria-label="${label} declared winners, current leaders, and unresolved contests">
+   <span class="v10-called-d" id="v10${office}DC"></span><span class="v10-lead-d" id="v10${office}DL"></span><span class="v10-unresolved" id="v10${office}U"></span><span class="v10-lead-r" id="v10${office}RL"></span><span class="v10-called-r" id="v10${office}RC"></span></div>
+  <div class="v10-breakdown">
+   <div class="v10-stat d"><span>${house?'Dem won':'Dem secured*'}</span><b id="v10${office}DW">—</b></div>
+   <div class="v10-stat d"><span>Dem leading</span><b id="v10${office}DLN">—</b></div>
+   <div class="v10-stat"><span>No verified D/R lead</span><b id="v10${office}UN">—</b></div>
+   <div class="v10-stat r"><span>Rep leading</span><b id="v10${office}RLN">—</b></div>
+   <div class="v10-stat r"><span>${house?'Rep won':'Rep secured*'}</span><b id="v10${office}RW">—</b></div>
+  </div>
+  <div class="v10-coverage" id="v10${office}Coverage">Awaiting reported votes…</div>
+  <div class="v10-insight" id="v10${office}Insight">Source-reported leaders are not winner calls. Unreported seats are neither wins nor losses.</div>`;
+ };
+ makeBoard(houseSection,'H');makeBoard(senateSection,'S');
+ const styles={D:'d',R:'r'};
+ function sourceWinner(r){return r.called&&r.winner&&r.winner.party?r.winner.party:null;}
+ function sourceLeader(r){
+  if(!r||!r.total||r.called)return null;
+  const cs=(r.cands||[]).filter(c=>Number(c.votes)>0).slice().sort((a,b)=>b.votes-a.votes);
+  if(!cs.length||(cs.length>1&&cs[0].votes<=cs[1].votes))return null;
+  return cs[0].party;
+ }
+ function summarizeOffice(office){
+  const rr=races.filter(r=>r.office===office),baseD=office==='S'?34:0,baseR=office==='S'?31:0,size=office==='H'?435:100;
+  const result={size,baseD,baseR,calledD:0,calledR:0,calledOther:0,leadD:0,leadR:0,leadOther:0,reporting:0,realCalls:0};
+  const unique=new Map();for(const r of rr)unique.set(r.key,r);
+  for(const r of unique.values()){
+   if(r.total>0)result.reporting++;
+   const w=sourceWinner(r);
+   if(w){result.realCalls++;if(w==='D')result.calledD++;else if(w==='R')result.calledR++;else result.calledOther++;continue}
+   const l=sourceLeader(r);
+   if(l==='D')result.leadD++;else if(l==='R')result.leadR++;else if(l)result.leadOther++;
+  }
+  result.dSecured=result.baseD+result.calledD;result.rSecured=result.baseR+result.calledR;
+  result.unresolved=Math.max(0,size-result.dSecured-result.rSecured-result.calledOther-result.leadD-result.leadR);
+  return result;
+ }
+ board=function(prefix){
+  const office=prefix==='house'?'H':'S',s=summarizeOffice(office);const values=[s.dSecured,s.leadD,s.unresolved,s.leadR,s.rSecured];
+  const labels=['DC','DL','U','RL','RC'];for(let i=0;i<labels.length;i++){$('v10'+office+labels[i]).style.width=(100*values[i]/s.size).toFixed(4)+'%'}
+  for(const [k,v] of Object.entries({DW:s.dSecured,DLN:s.leadD,UN:s.unresolved,RLN:s.leadR,RW:s.rSecured}))$('v10'+office+k).textContent=fmt(v);
+  const coverage=$('v10'+office+'Coverage');
+  coverage.textContent=`${s.reporting} reporting ${office==='H'?'House districts':'Senate races'} · ${s.realCalls} explicitly sourced winner calls`;
+  $('v10'+office+'Insight').textContent=office==='H'
+   ?`${s.leadD+s.leadR} uncalled House races have a Democratic or Republican leader in connected feeds. No party control is declared by this calculation. ${s.calledOther+s.leadOther?'Independent/third-party results remain in the unresolved category.':''}`
+   :`*Secured totals include 34 Democratic-caucus and 31 Republican holdovers, plus any explicitly called winners. Independents caucusing with Democrats are included in the 34. Current leads do not count as won. A 50–50 Senate can be controlled through the vice president's tie-break vote.`;
+ };
+ // Keep the governor renderer as an inert compatibility shim; nothing governor-related is surfaced or fetched.
+ renderGovernorControl=function(){};
+ // Record exactly which candidate was ahead at the time of a snapshot, not just D/R aggregate totals.
+ const oldMakeSnap=makeSnap;
+ makeSnap=function(rs){
+  const s=oldMakeSnap(rs),map=new Map(rs.map(r=>[r.key,r]));
+  s.rs=s.rs.filter(x=>x[0].startsWith('H-')||x[0].startsWith('S-')).map(x=>{
+   const r=map.get(x[0]);const lead=sourceLeader(r);
+   return [...x,lead||'',r?.cands?.[0]?.votes??0];
+  });
+  return s;
+ };
+ const oldRenderReplay=renderPulseAndReplay;
+ renderPulseAndReplay=function(){
+  oldRenderReplay();
+  const snap=selectedSnap();const groups=(office)=>{
+   const entries=(snap?.rs||[]).filter(x=>x[0].startsWith(office+'-'));
+   const calledD=entries.filter(x=>x[4]==='D').length,calledR=entries.filter(x=>x[4]==='R').length;
+   const available=entries.some(x=>x.length>6);
+   const ld=entries.filter(x=>!x[4]&&x[6]==='D').length,lr=entries.filter(x=>!x[4]&&x[6]==='R').length;
+   return{calledD,calledR,ld,lr,available};
+  };
+  for(const [office,id] of [['H','replayHouse'],['S','replaySenate']]){
+   const t=$(id),c=t.parentElement,g=groups(office);
+   c.querySelector('.cap').textContent=office==='H'?'House: sourced calls D / R':'Senate: race calls D / R (excludes holdovers)';
+   t.textContent=`${g.calledD} / ${g.calledR}`;
+   let sub=c.querySelector('.v10-replay-lead');if(!sub){sub=document.createElement('div');sub.className='v10-replay-lead';c.appendChild(sub)}
+   sub.textContent=!snap?'Awaiting election returns':g.available?`At this snapshot: D leading ${g.ld} · R leading ${g.lr}`:'Leaders not recorded in this older snapshot';
+  }
+  $('replayGovernors').textContent='—';
+  const explanation=$('replayText');
+  explanation.textContent=replayHistory.length<2
+   ?'Rewind begins after at least two changed vote snapshots are observed in this browser. It does not reconstruct earlier election-night data.'
+   :'Each saved point records actual counts seen by this browser. House and Senate leader counts are shown only for snapshots that included candidate-lead data. This is not a projection. Up to 80 changed snapshots are retained here.';
+ };
+ // DSA tracker: do not conflate no feed coverage with a candidate failing to earn votes.
+ renderDSA=function(){
+  let won=0,lead=0,reporting=0,missing=0;
+  const results=DSA_CANDIDATES.map(c=>{
+   const race=houseRaceFor(c.state,c.dist);
+   const found=race?.cands?.find(x=>compactName(x.name)===compactName(c.name));
+   let label='Race absent from connected feeds',className='',detail='';
+   if(race&&race.total>0){
+    reporting++;
+    if(!found){label='Race reporting · candidate count missing';missing++;detail='No candidate-specific total in connected feed';}
+    else{
+     const pct=race.total?100*found.votes/race.total:0;
+     detail=`${fmt(found.votes)} votes · ${pct.toFixed(1)}%`;
+     if(race.called){
+      if(compactName(race.winner?.name)===compactName(found.name)){won++;label='Called winner';className='won'}
+      else {label='Called for another candidate';className='lost'}
+     } else if(sourceLeader(race)&&race.cands[0]===found){lead++;label='Leading · uncalled';className='leading'}
+     else if(found.votes>0)label='Reporting · not leading';
+     else label='Race reporting · no votes shown for candidate';
+    }
+   }else if(race){missing++;label='Race listed · no vote totals in feed';}
+   else missing++;
+   return{c,label,className,detail,rank:className==='won'?0:className==='leading'?1:race?.total>0?2:3};
+  }).sort((a,b)=>a.rank-b.rank||a.c.name.localeCompare(b.c.name));
+  $('dsaGrid').innerHTML=results.map(x=>`<div class="dsa-row"><div><div class="dsa-name">${esc(x.c.name)}</div><div class="dsa-office">${esc(x.c.state)} · U.S. House District ${Number(x.c.dist)}</div></div><div class="dsa-status ${x.className}">${esc(x.label)}</div><div class="dsa-votes">${esc(x.detail)}${x.detail?' · ':''}<a href="${esc(x.c.source)}" target="_blank" rel="noopener">Endorsement source ↗</a></div></div>`).join('');
+  $('dsaWon').textContent=won;$('dsaLeading').textContent=lead;$('dsaReporting').textContent=reporting;$('dsaNotReporting').textContent=missing;
+  const stat=$('dsaNotReporting').parentElement;stat.lastChild&&stat.lastChild.nodeType===3&&(stat.lastChild.textContent='No candidate-level returns');
+ };
+ // Rewrite leftover section descriptions and remove misleading governor mentions.
+ $('power').querySelector('.module-intro p').textContent='Confirmed wins and current vote leaders are separate. No projection is inferred.';
+ $('replay').querySelector('.module-number').textContent='02 / REWIND';
+ $('dsa').querySelector('.module-number').textContent='03 / DSA CANDIDATES';
+ $('races').querySelector('.module-number').textContent='04 / RETURNS';
+ // The old status filter remains a call/not-call filter; keeping it avoids losing any functionality.
+ const latest=$('sourceLedger');if(latest){latest.querySelector('.sectop .sub').textContent='A successful connection is not proof of a current underlying vote timestamp. These counts are unofficial.';}
+})();
 
 setInterval(tick,500);render();update();
 })();
