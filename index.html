@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/><meta content="#f6f5f1" name="theme-color"/><link href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%228%22%20fill%3D%22%23122430%22/%3E%3Cpath%20d%3D%22M11%2017h10l10%2024%2010-24h10L35%2051h-8z%22%20fill%3D%22%23f6f5f1%22/%3E%3Ccircle%20cx%3D%2253%22%20cy%3D%2249%22%20r%3D%226%22%20fill%3D%22%23bb4845%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/><meta content="VoteScope — Live U.S. Election Returns" property="og:title"/><meta content="Live 2026 U.S. election results, congressional balance of power, and historical swings. An independent project by Will York." property="og:description"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="light" name="color-scheme"/><meta content="VoteScope by Will York: live U.S. elections, 2022/2024 historical swing charts, personal watchlist, civicAPI verification, replay and DSA endorsements." name="description"/><title>VoteScope — House &amp; Senate Results, Historical Lean and Rewind | Will York</title>
+<meta content="light" name="color-scheme"/><meta content="VoteScope by Will York: live U.S. elections, 2022/2024 historical swing charts, personal watchlist, civicAPI verification, replay and DSA endorsements." name="description"/><title>VoteScope v11 — House &amp; Senate Calls, Rewind and DSA | Will York</title>
 <style>
 :root{--bg:#09111c;--panel:#101f30;--panel2:#14283c;--line:#294052;--muted:#9db2c6;--ink:#f5f9fe;--blue:#4b9bf5;--red:#f16b69;--other:#e3b665;--good:#67d5b0;--shadow:0 12px 36px #0003}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 5% -10%,#16395b 0,transparent 43%),var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px}a{color:#9ecfff}a:hover{text-decoration:underline}.wrap{max-width:1400px;margin:auto;padding:26px 24px 65px}header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}header h1{font-size:clamp(28px,4vw,39px);margin:6px 0 7px;letter-spacing:-.055em;font-weight:790}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8fc7ef;font-weight:800}.sub{color:var(--muted);line-height:1.5}.live{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:50px;background:#12354a;border:1px solid #2f6578;color:#bfe9fb;font-weight:750;font-size:12px}.dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px #67d5b02b;animation:pulse 1.7s infinite}@keyframes pulse{50%{opacity:.45}}.controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn,.pick,.search{font:inherit;border:1px solid var(--line);color:var(--ink);background:var(--panel2);border-radius:9px;padding:10px 12px}.btn{cursor:pointer;font-weight:710}.btn:hover{background:#23415c}.btn:disabled{opacity:.5;cursor:default}.btn.primary{background:#285581;border-color:#32709b}.small{font-size:12px}.muted{color:var(--muted)}.banner{border:1px solid var(--line);border-radius:12px;background:#102336c9;padding:13px 16px;margin-bottom:22px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;line-height:1.55}.error{color:#ffd6ab}.row{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap}.board{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{border:1px solid var(--line);background:linear-gradient(140deg,#13263a,#0f1d2d);border-radius:16px;box-shadow:var(--shadow);padding:21px}.panel h2{margin:0 0 4px;font-size:20px;letter-spacing:-.03em}.cap{font-size:12px;color:var(--muted)}.bar{height:17px;border-radius:5px;overflow:hidden;background:#26384a;display:flex;margin:22px 0 11px}.bar .d{background:var(--blue)}.bar .r{background:var(--red)}.bar .o{background:var(--other)}.partygrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:11px}.partystat{padding:11px;background:#0c1825aa;border-radius:11px}.statlabel{font-size:12px;color:var(--muted);margin-bottom:5px}.big{font-size:29px;font-weight:830;line-height:1.2;font-variant-numeric:tabular-nums}.blue{color:var(--blue)}.red{color:var(--red)}.yellow{color:var(--other)}.green{color:var(--good)}.sectop{display:flex;align-items:end;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:30px;margin-bottom:14px}.sectop h2{margin:0;font-size:23px;letter-spacing:-.035em}.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.search{flex:1;min-width:180px}.pick{min-width:110px}.pill{border:1px solid #39566d;border-radius:99px;padding:5px 9px;color:#b8d3e6;background:#152e40;font-size:11px;white-space:nowrap}.pill.called{background:#214a3b;color:#96ead0;border-color:#38816e}.pill.leading{color:#ffe6b0;border-color:#8a714a;background:#41351f}.pill.empty{color:#aabccc;background:#172533}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.race{cursor:pointer;text-align:left;width:100%;color:var(--ink);border:1px solid var(--line);background:#102238;border-radius:13px;padding:16px;transition:transform .12s,border-color .12s}.race:hover{transform:translateY(-2px);border-color:#659cbe}.racehead{display:flex;justify-content:space-between;gap:9px;align-items:start;margin-bottom:13px}.racename{font-size:15px;font-weight:800}.cand{display:grid;grid-template-columns:16px minmax(0,1fr) auto auto;gap:9px;align-items:center;margin:9px 0;font-size:13px}.cand .partykey{width:11px;height:11px;border-radius:50%;background:var(--other)}.cand .partykey.D{background:var(--blue)}.cand .partykey.R{background:var(--red)}.cand .votes{font-variant-numeric:tabular-nums;color:#cfdae5}.cand .pct{font-weight:800;font-variant-numeric:tabular-nums;min-width:48px;text-align:right}.minibar{height:6px;display:flex;border-radius:6px;overflow:hidden;background:#253648;margin:12px 0 8px}.minibar span{height:100%}.racefoot{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;color:var(--muted);font-size:11px}.detail{display:none;position:fixed;inset:0;z-index:4;background:#000b;padding:22px;align-items:center;justify-content:center}.detail.open{display:flex}.dialog{width:min(620px,100%);max-height:88vh;overflow:auto;background:#102238;border:1px solid #37546b;border-radius:17px;box-shadow:0 20px 80px #0008;padding:24px}.dialog h3{font-size:23px;margin:0 0 8px}.x{float:right}.sourcebox{border:1px solid var(--line);border-radius:12px;padding:13px 17px;margin-top:22px;background:#102033;line-height:1.55}.countdown{color:#aee4dd;font-variant-numeric:tabular-nums}.emptybox{padding:36px 22px;border:1px dashed #406079;border-radius:13px;text-align:center;color:var(--muted);line-height:1.6}.foot{font-size:11px;color:#8ca5ba;margin-top:21px;line-height:1.6}.foot a{color:#a6cee7}.pop{margin-top:7px;font-size:12px;color:var(--muted)}@media(max-width:800px){.wrap{padding:18px 12px}.board,.cards{grid-template-columns:1fr}.panel{padding:17px}header{gap:9px}.filters>*{flex:1}.big{font-size:25px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 
@@ -374,6 +374,22 @@ body .board .panel{min-width:0}
 @media (max-width:900px){.board{grid-template-columns:1fr}.v10-stat span{font-size:10px}.v10-stat b{font-size:30px}}
 @media (max-width:460px){.v10-breakdown{grid-template-columns:repeat(5,minmax(0,1fr))}.v10-stat{padding:12px 3px 12px 5px}.v10-stat span{font-size:8px;letter-spacing:0;min-height:33px}.v10-stat b{font-size:23px}.board>.panel{padding:14px}.replay-stats{gap:8px}}
 
+
+/* v11 source call desk - restrained newsroom styling */
+.v11-call-desk{margin-top:16px;background:#fff;border:1px solid #d8dedf;border-top:3px solid #203645;padding:18px 21px;color:#203645}
+.v11-call-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.v11-call-head h3{font-family:Georgia,serif;font-size:23px;margin:3px 0 14px}
+.v11-kicker{font-size:10px;letter-spacing:.16em;color:#647483;font-weight:800}
+.v11-feed-state{font-size:12px;padding:5px 8px;border:1px solid #cbd6d8;color:#267559;background:#eff6f0}
+.v11-feed-state.bad{color:#885430;background:#faf3e8}
+.v11-call-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #d7dedf;border-bottom:1px solid #d7dedf}
+.v11-call-grid>div{padding:11px;border-right:1px solid #e2e5e6}
+.v11-call-grid>div:last-child{border-right:0}
+.v11-call-grid b{font:700 30px Georgia,serif;display:block;color:#203645}
+.v11-call-grid span{font-size:12px;color:#536876}
+.v11-call-fine{margin-top:11px;font-size:12px;line-height:1.65;color:#4f6370}
+.v11-call-fine a{color:#2866a0}
+@media(max-width:700px){.v11-call-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.v11-call-grid>div:nth-child(2){border-right:0}.v11-call-grid>div:nth-child(-n+2){border-bottom:1px solid #e1e5e6}}
 </style>
 </head>
 <body>
@@ -555,12 +571,98 @@ const inFeed=races.filter(x=>x.office===(prefix==='house'?'H':'S'));const counte
 function badge(r){return r.called?'<span class="pill called">✓ Called</span>':r.total>0?'<span class="pill leading">● Counting</span>':'<span class="pill empty">No votes yet</span>'}
 function topCandidates(r){return r.cands.slice(0,3).map(c=>`<div class="cand"><i class="partykey ${esc(c.party)}"></i><div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c.name)} ${r.called&&r.winner?.name===c.name?'✓':''}</div><span class="votes">${fmt(c.votes)}</span><span class="pct">${c.pct==null?'—':c.pct.toFixed(1)+'%'}</span></div>`).join('')}
 function margin(r){if(r.cands.length<2||!r.total)return '—';return`${fmt(r.cands[0].votes-r.cands[1].votes)} votes · ${(100*(r.cands[0].votes-r.cands[1].votes)/r.total).toFixed(2)} pp`}
-function raceHtml(r,i){const shares=r.total?r.cands.slice(0,6).map(c=>`<span style="width:${Math.max(0,Math.min(100,c.pct??0))}%;background:${c.party==='D'?'var(--blue)':c.party==='R'?'var(--red)':'var(--other)'}"></span>`).join(''):'';return`<button type="button" class="race" data-index="${i}"><div class="racehead"><div><div class="racename">${esc(nameOf(r))}</div><div class="cap">${r.total?fmt(r.total)+' counted votes':'Awaiting returns'}${r.delta?' · <span class="green">+'+fmt(r.delta)+' new</span>':''}</div></div>${badge(r)}</div>${topCandidates(r)||'<div class="muted small" style="padding:7px 0">Candidate returns not yet available from connected feeds</div>'}<div class="minibar">${shares}</div><div class="racefoot"><span>${r.called?'Winner called by '+esc(r.calledBy):r.total?'Current lead '+esc(margin(r)):'No votes reported'}</span><span>${r.pctIn==null?'Reporting % unavailable':r.pctIn.toFixed(1)+'% reported*'}</span></div></button>`}
+function raceHtml(r,i){const shares=r.total?r.cands.slice(0,6).map(c=>`<span style="width:${Math.max(0,Math.min(100,c.pct??0))}%;background:${c.party==='D'?'var(--blue)':c.party==='R'?'var(--red)':'var(--other)'}"></span>`).join(''):'';return`<button type="button" class="race" data-index="${i}"><div class="racehead"><div><div class="racename">${esc(nameOf(r))}</div><div class="cap">${r.total?fmt(r.total)+' counted votes':'Awaiting returns'}${r.delta?' · <span class="green">+'+fmt(r.delta)+' new</span>':''}</div></div>${badge(r)}</div>${topCandidates(r)||'<div class="muted small" style="padding:7px 0">Candidate returns not yet available from connected feeds</div>'}<div class="minibar">${shares}</div><div class="racefoot"><span>${r.called?esc(v11SourceLabel(r)):r.callConflict?.length?esc(v11SourceLabel(r)):r.total?'Current lead '+esc(margin(r)):'No votes reported'}</span><span>${r.pctIn==null?'Reporting % unavailable':r.pctIn.toFixed(1)+'% reported*'}</span></div></button>`}
 function filtered(){const ch=$('chamber').value,st=$('state').value,stt=$('status').value,q=$('search').value.toLowerCase().trim(),sort=$('sort').value;let a=races.filter(r=>(ch==='ALL'||r.office===ch)&&(st==='ALL'||r.state===st)&&(stt==='ALL'||stt==='REPORTING'&&r.total>0||stt==='UNCALLED'&&!r.called||stt==='CALLED'&&r.called)&&(!q||(nameOf(r)+' '+r.cands.map(c=>c.name).join(' ')).toLowerCase().includes(q)));if(sort==='closest')a.sort((x,y)=>(x.cands.length>1&&x.total?(x.cands[0].votes-x.cands[1].votes)/x.total:10)-(y.cands.length>1&&y.total?(y.cands[0].votes-y.cands[1].votes)/y.total:10));else if(sort==='votes')a.sort((x,y)=>y.total-x.total);else if(sort==='state')a.sort((x,y)=>x.state.localeCompare(y.state)||x.office.localeCompare(y.office)||Number(x.district)-Number(y.district));else a.sort((x,y)=>(Date.parse(y.stamp)||0)-(Date.parse(x.stamp)||0)||y.delta-x.delta||y.total-x.total);return a}
 let shown=[];function render(){board('house',435,0,0);board('senate',100,34,31);const a=filtered();shown=a;const g=$('raceGrid');g.innerHTML=a.slice(0,limit).map(raceHtml).join('');$('more').style.display=a.length>limit?'block':'none';const returning=races.filter(r=>r.total>0).length;const called=races.filter(r=>r.called).length;$('raceCount').textContent=`${a.length} matching races · ${returning} with votes in connected feeds · ${called} sourced calls. Feed coverage varies by state.`;if(!a.length){g.innerHTML=`<div class="emptybox" style="grid-column:1/-1"><strong>${races.length?'No races match these filters.':'Waiting for reported election-night results.'}</strong><div style="margin-top:8px">${races.length?'Try a different state or filter.':'When publishers release the first counts, the race list will populate automatically. No votes are invented.'}</div></div>`;}const nd=races.filter(r=>r.delta>0);$('newVotes').textContent=nd.length?`${nd.length} races have additional votes since last check`:'No newly counted votes detected';}
-function showDetail(i){const r=shown[i];if(!r)return;$('dialogContent').innerHTML=`<div class="eyebrow">2026 · Unofficial returns</div><h3>${esc(nameOf(r))}</h3><div style="margin:6px 0 20px">${badge(r)} <span class="muted">${r.total?fmt(r.total)+' votes':'Votes not reported'}</span></div>${topCandidates(r)}<hr style="border:none;border-top:1px solid #294052;margin:20px 0"><p><strong>Current margin:</strong> ${esc(margin(r))}</p><p><strong>Reported progress:</strong> ${r.pctIn==null?'Not supplied':r.pctIn.toFixed(1)+'% (source-defined reporting unit; not necessarily votes counted)'}</p><p><strong>Race status:</strong> ${r.called?'Called by '+esc(r.calledBy):r.total?'A candidate is currently leading; no race call':'No returns received'}</p><p><strong>Source:</strong> ${esc(r.source)}</p><p><strong>Source update:</strong> ${esc(date(r.stamp))}</p><p><a href="${esc(r.srcUrl)}" target="_blank" rel="noopener">Inspect source ↗</a></p><div class="cap">An early lead, or 100% of precincts reported, does not by itself establish a certified result.</div>`;$('detail').classList.add('open');civicAddDetailAction(r)}
-const sourceNames=['2026 race roster','The People’s Tally','Open America House','Open America Senate'];
-const sourceUrls=['https://thepeoplestally.com/data/core.json','https://thepeoplestally.com/data/results.json','https://openamerica.io/elections/results.json?year=2026&office=House','https://openamerica.io/elections/results.json?year=2026&office=Senate'];
+function showDetail(i){const r=shown[i];if(!r)return;$('dialogContent').innerHTML=`<div class="eyebrow">2026 · Unofficial returns</div><h3>${esc(nameOf(r))}</h3><div style="margin:6px 0 20px">${badge(r)} <span class="muted">${r.total?fmt(r.total)+' votes':'Votes not reported'}</span></div>${topCandidates(r)}<hr style="border:none;border-top:1px solid #294052;margin:20px 0"><p><strong>Current margin:</strong> ${esc(margin(r))}</p><p><strong>Reported progress:</strong> ${r.pctIn==null?'Not supplied':r.pctIn.toFixed(1)+'% (source-defined reporting unit; not necessarily votes counted)'}</p><p><strong>Race status:</strong> ${esc(v11SourceLabel(r))}</p><p><strong>Source:</strong> ${esc(r.source)}</p><p><strong>Call evidence:</strong> ${r.called?`<a href="${esc(r.callEvidenceUrl||'https://thepeoplestally.com/open-data/')}" target="_blank" rel="noopener">${esc(v11SourceLabel(r))} ↗</a>`:esc(v11SourceLabel(r))}</p><p><strong>Source update:</strong> ${esc(date(r.stamp))}</p><p><a href="${esc(r.srcUrl)}" target="_blank" rel="noopener">Inspect source ↗</a></p><div class="cap">An early lead, or 100% of precincts reported, does not by itself establish a certified result.</div>`;$('detail').classList.add('open');civicAddDetailAction(r)}
+
+/* VoteScope v11: named-source election calls only. No inferred winners. */
+const V11_CALL_FEED='https://thepeoplestally.com/api/live';
+let v11LiveCalls=[],v11LiveCallAt=null,v11LiveCallErrors=0;
+const v11CivicCalls=new Map();
+const v11APReference='https://apps.npr.org/2026-election-results/';
+function v11Name(s){return clean(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
+function v11IsTest(x){return ['test_data','testData','test','is_test','isTest','mock_data'].some(k=>x?.[k]===true||x?.[k]===1||String(x?.[k]||'').toLowerCase()==='true')}
+function v11OfficialSource(s){return /^(associated press|ap|ap news|nbc news|cbs news|abc news|cnn|fox news|decision desk hq|ddhq|certified results|state certification|civicapi)$/i.test(clean(s).trim())}
+function v11CallSource(s){const source=clean(s).trim();return source&&v11OfficialSource(source)?source:null}
+function v11LiveCallRows(data){
+ if(!data||typeof data!=='object'||v11IsTest(data)||!data.res||typeof data.res!=='object')throw Error('Live calls bundle missing res');
+ const out=[];
+ for(const [state,region] of Object.entries(data.res)){
+  if(!/^[A-Z]{2}$/.test(state)||!region||v11IsTest(region))continue;
+  for(const [key,item] of Object.entries(region.races||{})){
+   const info=raceKey(key);
+   if(!info||!['H','S'].includes(info.office)||info.state!==state||!item||v11IsTest(item))continue;
+   const status=clean(item.status).toLowerCase();
+   const source=v11CallSource(item.called_by);
+   const winner=clean(item.winner_name||'').trim();
+   // A state reporting 100% or a candidate leading is never sufficient.
+   if(!source||!winner||!/^(called|certified|final)$/.test(status))continue;
+   const asof=item.called_at||item.call_time||item.asof||region.asOf||data.at||null;
+   const callUrl=url(item.call_url)||url(item.url)||url(region.url)||'https://thepeoplestally.com/open-data/';
+   out.push({key:info.key,winner,source,asof,callUrl,via:'The People’s Tally live',kind:'publisher',observed:Date.now()});
+  }
+ }
+ return out;
+}
+function v11MatchWinner(r,name){
+ const normalized=v11Name(name);if(!normalized||normalized.length<4)return null;
+ const matches=(r.cands||[]).filter(c=>v11Name(c.name)===normalized);
+ return matches.length===1?matches[0]:null;
+}
+function v11CallCandidates(r){
+ const items=[];
+ if(r.called&&r.winner&&v11CallSource(r.calledBy))items.push({key:r.key,winner:r.winner.name,source:r.calledBy,asof:r.callSourceAt||r.stamp,callUrl:r.callEvidenceUrl||r.srcUrl,via:'The People’s Tally results snapshot',kind:'publisher'});
+ for(const snapshot of (resultFeedCache.get(1)||[]))if(snapshot.key===r.key&&snapshot.called&&snapshot.winner&&v11CallSource(snapshot.calledBy))items.push({key:r.key,winner:snapshot.winner.name,source:snapshot.calledBy,asof:snapshot.stamp,callUrl:snapshot.srcUrl,via:'The People’s Tally results snapshot',kind:'publisher'});
+ for(const x of v11LiveCalls)if(x.key===r.key)items.push(x);
+ if(v11CivicCalls.has(r.key))items.push(v11CivicCalls.get(r.key));
+ return items;
+}
+function v11OverlayCalls(rs){
+ for(const r of rs){
+  const candidates=v11CallCandidates(r);
+  const validated=candidates.map(x=>({...x,person:v11MatchWinner(r,x.winner)})).filter(x=>x.person&&v11CallSource(x.source));
+  const unique=new Map(validated.map(x=>[v11Name(x.person.name),x]));
+  if(unique.size>1){r.called=false;r.winner=null;r.calledBy='';r.callConflict=validated;r.callAttribution='Conflicting source calls';continue;}
+  if(!validated.length){r.called=false;r.winner=null;r.calledBy='';r.callConflict=null;r.callAttribution='Call status unavailable';continue;}
+  // Prefer a named AP attribution for display, otherwise prefer an explicitly sourced publisher over a civicAPI call.
+  const ap=validated.find(x=>/^(AP|AP News|Associated Press)$/i.test(x.source));
+  const chosen=ap||validated.find(x=>x.kind==='publisher')||validated[0];
+  r.called=true;r.winner=chosen.person;r.calledBy=chosen.source;r.callConflict=null;
+  r.callSourceAt=chosen.asof||null;r.callEvidenceUrl=chosen.callUrl||'https://thepeoplestally.com/open-data/';
+  r.callAttribution=/^(AP|AP News|Associated Press)$/i.test(chosen.source)?'AP-attributed via '+chosen.via:'Called by '+chosen.source+' · via '+chosen.via;
+  r.callMultipleSources=validated.length;
+ }
+ return rs;
+}
+function v11CivicCallFromDetail(r,obj,raw,cands,id){
+ if(v11IsTest(raw)||v11IsTest(obj))return null;
+ const rawStatus=String(obj?.status||obj?.race_status||obj?.raceStatus||'').toLowerCase();
+ const explicit=obj?.race_called===true||obj?.is_called===true||obj?.called===true||['called','race_called','projected','certified'].includes(rawStatus);
+ if(!explicit)return null;
+ const candidates=Array.isArray(obj?.candidates)?obj.candidates:[];
+ const winner=clean(obj?.winner_name||obj?.winnerName||obj?.winner?.name||obj?.called_winner?.name||candidates.find(c=>c?.winner===true||c?.is_winner===true)?.name).trim();
+ if(!winner||!cands.some(c=>v11Name(c.name)===v11Name(winner))||!v11MatchWinner(r,winner))return null;
+ return {key:r.key,winner,source:'civicAPI',asof:obj.updated_at||obj.last_updated||obj.as_of||null,callUrl:'https://civicapi.org/race/'+encodeURIComponent(id),via:'civicAPI detail',kind:'civic',observed:Date.now()};
+}
+function v11SourceLabel(r){
+ if(r.callConflict?.length)return 'Source disagreement — no winner counted';
+ if(r.called){return r.callAttribution||'Winner called by '+r.calledBy;}
+ return r.total>0?'Leading · no verified winner call':'Call status unavailable';
+}
+function v11ShowCallStatus(){
+ const box=$('v11CallDesk');if(!box)return;
+ const all=races.filter(r=>r.office==='H'||r.office==='S'),called=all.filter(r=>r.called);
+ const ap=called.filter(r=>/^(AP|AP News|Associated Press)$/i.test(r.calledBy)).length;
+ const civic=called.filter(r=>r.calledBy==='civicAPI').length;
+ const others=called.length-ap-civic;
+ const conflicts=all.filter(r=>r.callConflict?.length).length;
+ const health=sourceHealth.get(4);
+ box.innerHTML=`<div class="v11-call-head"><div><span class="v11-kicker">RACE-CALL MONITOR</span><h3>Attributed race calls</h3></div><span class="v11-feed-state ${health?.error?'bad':'good'}">${health?.error?'Live call feed unavailable':health?.lastSuccess?'Live call feed checked':'Awaiting first call check'}</span></div><div class="v11-call-grid"><div><b>${called.length}</b><span>Source-called House &amp; Senate races</span></div><div><b>${ap}</b><span>AP-attributed (secondary report)</span></div><div><b>${civic}</b><span>civicAPI (verified when opened)</span></div><div><b>${others}</b><span>Other named publishers</span></div></div><div class="v11-call-fine">${conflicts?`<strong>${conflicts} conflicting source reports</strong> excluded from winners. `:''}A call attributed to AP by another publisher is <strong>not</strong> a direct AP API verification. The free AP reference opens separately; it is not an imported AP call feed. <a href="${v11APReference}" rel="noopener" target="_blank">Check AP-sourced published results ↗</a> · <a href="https://thepeoplestally.com/open-data/" rel="noopener" target="_blank">Call feed methodology ↗</a>. Rewind records calls only when this browser observes them.</div>`;
+}
+
+const sourceNames=['2026 race roster','The People’s Tally','Open America House','Open America Senate','The People’s Tally live call data'];
+const sourceUrls=['https://thepeoplestally.com/data/core.json','https://thepeoplestally.com/data/results.json','https://openamerica.io/elections/results.json?year=2026&office=House','https://openamerica.io/elections/results.json?year=2026&office=Senate',V11_CALL_FEED];
 const resultFeedCache=new Map(),sourceHealth=new Map();
 function updateSourceLedger(){
  $('sourceLedgerRows').innerHTML=sourceNames.map((name,i)=>{const m=sourceHealth.get(i),ok=!!m?.lastSuccess;
@@ -574,9 +676,10 @@ async function update(){
   try{
    let records=[];if(i===0){records=normalizeCore(z.value);roster=records;}
    else if(i===1){latestTally=z.value;records=normalizeTally(z.value)}
+   else if(i===4){records=v11LiveCallRows(z.value);v11LiveCalls=records;v11LiveCallAt=z.value.at||null;}
    else records=normalizeOA(z.value,['','','House','Senate'][i]);
-   if(i!==0){resultFeedCache.set(i,records);freshResults++}
-   let stamp=i===1?z.value.generated_at:z.value.as_of;
+   if(i!==0){resultFeedCache.set(i,records);if(i===4){ /* call-only source, not a fresh vote snapshot */ }else freshResults++}
+   let stamp=i===4?z.value.at:i===1?z.value.generated_at:z.value.as_of;
    if(!stamp)stamp=records.map(r=>Date.parse(r.stamp)).filter(Number.isFinite).sort((a,b)=>b-a)[0]||null;
    sourceHealth.set(i,{lastSuccess:Date.now(),sourceAt:stamp,count:records.length,stale:z.value?.stale===true,error:null});successful++;
   }catch(err){const old=sourceHealth.get(i)||{};sourceHealth.set(i,{...old,error:'Unexpected feed format: '+String(err.message).slice(0,90)})}
@@ -584,18 +687,18 @@ async function update(){
  const a=resultFeedCache.get(1)||[],office=[2,3].flatMap(i=>resultFeedCache.get(i)||[]),live=merge(a,office);
  if(freshResults){
   const combined=new Map(roster.map(x=>[x.key,x]));for(const x of live)combined.set(x.key,x);
-  races=[...combined.values()].filter(x=>x.office==='H'||x.office==='S');computeDelta(races);lastOk=new Date();
-  $('feedStatus').textContent=`Results checked · ${freshResults} of ${sourceUrls.length-1} result feeds responding`;
+  races=v11OverlayCalls([...combined.values()].filter(x=>x.office==='H'||x.office==='S'));computeDelta(races);lastOk=new Date();
+  $('feedStatus').textContent=`Results checked · ${freshResults} vote feeds responding · ${sourceHealth.get(4)?.error?'call feed unavailable':sourceHealth.get(4)?.lastSuccess?'call feed checked':'call feed unchecked'}`;
   const newest=[...races].map(x=>Date.parse(x.stamp)).filter(Number.isFinite).sort((a,b)=>b-a)[0];
   $('meta').textContent=`${races.length} races in roster and connected feeds · ${races.filter(x=>x.total>0).length} reporting votes · ${newest?'Newest source timestamp '+date(newest):'No source vote timestamp available'}`;
-  $('checked').textContent='Checked '+date(lastOk);render();
+  $('checked').textContent='Checked '+date(lastOk);render();v11ShowCallStatus();
  }else{
   $('feedStatus').textContent=successful?'No live results feeds responded; cached results retained':'Live feed check unsuccessful — retrying';
   $('meta').textContent='No new vote snapshot recorded. Last successfully retrieved vote totals remain displayed.';
-  if(roster.length&&!races.length){races=roster;render()}
+  if(roster.length&&!races.length){races=v11OverlayCalls(roster);render()}else if(races.length&&sourceHealth.get(4)?.lastSuccess&&!sourceHealth.get(4)?.error){races=v11OverlayCalls(races);recordSnap(races);render();}v11ShowCallStatus()
  }
  $('sourcesState').textContent=sourceNames.map((n,i)=>n+': '+(sourceHealth.get(i)?.error?'check failed':sourceHealth.get(i)?.lastSuccess?'retrieved':'not checked')).join(' · ');
- updateSourceLedger();busy=false;$('refresh').disabled=false;schedule();
+ updateSourceLedger();v11ShowCallStatus();busy=false;$('refresh').disabled=false;schedule();
 }
 function schedule(){if(timer)clearTimeout(timer);if(paused){nextAt=0;$('countdown').textContent='Paused';return}const wait=Number($('frequency').value)*1000;nextAt=Date.now()+wait;timer=setTimeout(update,wait)}function tick(){$('countdown').textContent=paused?'Paused':nextAt?Math.max(0,Math.ceil((nextAt-Date.now())/1000))+'s':'Checking…'}
 $('toggle').onclick=()=>{paused=!paused;$('toggle').textContent=paused?'Resume':'Pause';$('liveTag').textContent=paused?'AUTO-REFRESH PAUSED':'AUTO-REFRESH ON';if(paused){if(timer)clearTimeout(timer);nextAt=0}else update();tick()};$('refresh').onclick=update;$('frequency').onchange=schedule;['chamber','state','status','sort','search'].forEach(id=>$(id).addEventListener('input',()=>{limit=36;render()}));$('showMore').onclick=()=>{limit+=36;render()};$('raceGrid').onclick=e=>{const b=e.target.closest('[data-index]');if(b)showDetail(Number(b.dataset.index))};$('close').onclick=()=>{$('detail').classList.remove('open')};$('detail').onclick=e=>{if(e.target===$('detail'))$('detail').classList.remove('open')};document.addEventListener('keydown',e=>{if(e.key==='Escape')$('detail').classList.remove('open')});
@@ -858,7 +961,7 @@ function snapDifferences(older,newer){const prev=snapMap(older),curr=snapMap(new
 function saveReplay(){try{localStorage.setItem(REPLAY_KEY,JSON.stringify(replayHistory))}catch(_e){replayHistory=replayHistory.slice(-30);try{localStorage.setItem(REPLAY_KEY,JSON.stringify(replayHistory))}catch(_e2){}}}
 function recordSnap(rs){
  if(!recordingEnabled)return;const snapshot=makeSnap(rs);if(!snapshot.rs.length)return;
- const old=replayHistory.at(-1);if(old){const compact=a=>JSON.stringify(a.rs.map(x=>x.slice(0,5)).sort((a,b)=>a[0].localeCompare(b[0])));if(compact(old)===compact(snapshot))return;}
+ const old=replayHistory.at(-1);if(old){const compact=a=>JSON.stringify(a.rs.map(x=>x.slice(0,5)).sort((a,b)=>a[0].localeCompare(b[0])));if(compact(old)===compact(snapshot)&&JSON.stringify(old.rs.map(x=>x.slice(5)).sort())===JSON.stringify(snapshot.rs.map(x=>x.slice(5)).sort()))return;}
  const wasLatest=replaySelection<0||replaySelection>=replayHistory.length-1;
  replayHistory.push(snapshot);const shifted=replayHistory.length>80;if(shifted)replayHistory.shift();if(wasLatest)replaySelection=replayHistory.length-1;else replaySelection=Math.max(0,replaySelection-(shifted?1:0));saveReplay();
 }
@@ -1065,10 +1168,11 @@ async function v7GetCivic(r,force=false){
    if(!civicDateMatch(obj)||!civicStateMatch(obj,r.state))continue;
    const cs=civicCandidates(raw);
    if(!cs.length||!v7CivicCandidatesMatch(cs,r))continue;
-   validated.push({id:target.id,cs,title:civicTitle(target.meta)||civicTitle(obj),stamp:civicPick(obj.updated_at,obj.last_updated,obj.lastUpdated,obj.as_of,raw?.updated_at)||null});
+   validated.push({id:target.id,cs,title:civicTitle(target.meta)||civicTitle(obj),stamp:civicPick(obj.updated_at,obj.last_updated,obj.lastUpdated,obj.as_of,raw?.updated_at)||null,call:v11CivicCallFromDetail(r,obj,raw,cs,target.id)});
   }
   if(validated.length){
    entry.status='ok';entry.detail=validated[0];entry.at=Date.now();
+   if(validated[0].call){v11CivicCalls.set(r.key,validated[0].call);v11OverlayCalls(races);recordSnap(races);render();v11ShowCallStatus();}
   }else if(entry.status!=='test'){entry.status='missing';entry.at=Date.now()}
  }catch(err){entry.status=entry.status==='test'?'test':'blocked';entry.at=Date.now()}
  v7CivicCache.set(r.key,entry);v7RenderCivic(r);v7RenderWatch();return entry;
@@ -1347,6 +1451,7 @@ vs9LoadHistory();
   <div class="v10-insight" id="v10${office}Insight">Source-reported leaders are not winner calls. Unreported seats are neither wins nor losses.</div>`;
  };
  makeBoard(houseSection,'H');makeBoard(senateSection,'S');
+ const monitor=document.createElement('div');monitor.id='v11CallDesk';monitor.className='v11-call-desk';document.querySelector('.board')?.insertAdjacentElement('afterend',monitor);
  const styles={D:'d',R:'r'};
  function sourceWinner(r){return r.called&&r.winner&&r.winner.party?r.winner.party:null;}
  function sourceLeader(r){
@@ -1388,7 +1493,7 @@ vs9LoadHistory();
   const s=oldMakeSnap(rs),map=new Map(rs.map(r=>[r.key,r]));
   s.rs=s.rs.filter(x=>x[0].startsWith('H-')||x[0].startsWith('S-')).map(x=>{
    const r=map.get(x[0]);const lead=sourceLeader(r);
-   return [...x,lead||'',r?.cands?.[0]?.votes??0];
+   return [...x,lead||'',r?.cands?.[0]?.votes??0,r?.winner?.name||'',r?.callAttribution||'',r?.callSourceAt||''];
   });
   return s;
  };
@@ -1429,7 +1534,7 @@ vs9LoadHistory();
      const pct=race.total?100*found.votes/race.total:0;
      detail=`${fmt(found.votes)} votes · ${pct.toFixed(1)}%`;
      if(race.called){
-      if(compactName(race.winner?.name)===compactName(found.name)){won++;label='Called winner';className='won'}
+      if(compactName(race.winner?.name)===compactName(found.name)){won++;label='Won · '+(race.calledBy||'named source');className='won'}
       else {label='Called for another candidate';className='lost'}
      } else if(sourceLeader(race)&&race.cands[0]===found){lead++;label='Leading · uncalled';className='leading'}
      else if(found.votes>0)label='Reporting · not leading';
@@ -1452,7 +1557,7 @@ vs9LoadHistory();
  const latest=$('sourceLedger');if(latest){latest.querySelector('.sectop .sub').textContent='A successful connection is not proof of a current underlying vote timestamp. These counts are unofficial.';}
 })();
 
-setInterval(tick,500);render();update();
+setInterval(tick,500);render();v11ShowCallStatus();update();
 })();
 </script>
 </body>
