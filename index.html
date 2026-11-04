@@ -190,6 +190,26 @@ header .sub{color:#47555d;margin-top:14px;font-size:14px;line-height:1.65}.sub-d
 .data-note{color:var(--muted);font-size:12px;line-height:1.6;margin:9px 0}
 .pulse-badge{color:var(--blue);font-weight:800;font-size:11px;letter-spacing:.07em}
 @media(max-width:740px){.pulse-grid,.replay-stats{grid-template-columns:1fr 1fr}.source-grid{grid-template-columns:1fr}.pulse-metric:nth-child(3){grid-column:1/-1}.pulse-panel,.replay-card,.matched-card{padding:14px}.pulse-table{min-width:520px}.pulse-metric strong{font-size:24px}}
+
+/* VoteScope v6: civicAPI supplemental cross-check, styled to match the newsroom */
+.civic-section{margin:24px 0 36px;border-top:3px solid var(--ink);padding-top:14px}
+.civic-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:13px}
+.civic-head h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(24px,3vw,32px);margin:4px 0 7px;line-height:1.1}
+.civic-section .status-flag{background:#edf1f2;border:1px solid var(--line);padding:5px 8px;font-size:11px;font-weight:750;white-space:nowrap}
+.civic-explainer{font-size:12px;color:var(--muted);line-height:1.6;max-width:850px;margin-bottom:15px}
+.civic-controls{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;background:var(--panel);padding:14px;border:1px solid var(--line)}
+.civic-controls label{display:grid;gap:5px;font-size:11px;text-transform:uppercase;font-weight:750;letter-spacing:.045em}
+.civic-controls .pick{width:100%;min-width:0}
+.civic-controls input{border:1px solid var(--line);background:var(--panel);border-radius:2px;padding:9px;font:inherit;color:var(--ink);width:100%;min-width:0}
+.civic-results{border:1px solid var(--line);background:var(--panel);padding:14px;margin-top:10px;min-height:65px;font-size:13px;line-height:1.6}
+.civic-results a{color:var(--blue)}
+.civic-race{border-top:1px solid var(--line);padding:10px 0}
+.civic-race:first-child{border-top:none}
+.civic-candidates{display:grid;grid-template-columns:1fr auto;gap:4px 12px;max-width:500px;margin:7px 0;font-size:12px}
+.civic-candidates span:nth-child(2n){font-variant-numeric:tabular-nums;text-align:right}
+.civic-note{margin-top:10px;color:var(--muted);font-size:11px;line-height:1.55}
+@media(max-width:850px){.civic-controls{grid-template-columns:1fr 1fr}.civic-controls button{grid-column:1/-1}.civic-head{flex-wrap:wrap}}
+
 </style>
 </head>
 <body>
@@ -198,7 +218,7 @@ header .sub{color:#47555d;margin-top:14px;font-size:14px;line-height:1.65}.sub-d
 <header><div><div class="eyebrow"><span class="eyebrow-line"></span> THE ELECTION DESK <span class="eyebrow-date">/ NOVEMBER 3, 2026</span></div>
 <div class="hero-wordmark"><h1>Vote<span>Scope</span><span class="h1-period">.</span></h1><div class="masthead-vertical"><span>LIVE</span><span>U.S. RETURNS</span></div></div>
 <div class="sub">The count, in context. <span class="sub-divider">/</span> Live returns, seat control &amp; historical shifts.<br><span class="byline">An independent project by <strong>Will York</strong></span></div></div><div class="controls"><span class="live"><span class="dot"></span><span id="liveTag">AUTO-REFRESH ON</span></span><select class="pick" id="frequency" aria-label="Refresh frequency"><option value="60">Every 60 sec</option><option value="120">Every 2 min</option><option value="300">Every 5 min</option></select><button class="btn" id="toggle">Pause</button><button class="btn primary" id="refresh">↻ Refresh now</button></div></header>
-<nav class="section-nav" aria-label="Dashboard sections"><a href="#pulse">NEW <span>Election Pulse</span></a><a href="#direction">00 <span>Movement</span></a><a href="#power">01 <span>Balance of power</span></a><a href="#performance">02 <span>Performance</span></a><a href="#history">03 <span>History</span></a><a href="#races">04 <span>Returns</span></a><a href="#dsa">05 <span>DSA tracker</span></a><span class="nav-trailing">OBSERVED RESULTS / NO PROJECTIONS</span></nav>
+<nav class="section-nav" aria-label="Dashboard sections"><a href="#pulse">NEW <span>Election Pulse</span></a><a href="#direction">00 <span>Movement</span></a><a href="#power">01 <span>Balance of power</span></a><a href="#performance">02 <span>Performance</span></a><a href="#history">03 <span>History</span></a><a href="#races">04 <span>Returns</span></a><a href="#dsa">05 <span>DSA tracker</span></a><a href="#civicapi">06 <span>civicAPI</span></a><span class="nav-trailing">OBSERVED RESULTS / NO PROJECTIONS</span></nav>
 <div class="banner"><div><strong id="feedStatus">Connecting to public election feeds…</strong><div class="small muted" id="meta">Actual vote data only; zero votes and missing races are treated differently.</div></div><div style="text-align:right"><div>Next check <strong class="countdown" id="countdown">—</strong></div><div class="small muted" id="checked">Not yet checked</div></div></div>
 
 <section class="direction-desk" id="direction" aria-labelledby="directionHeading">
@@ -293,6 +313,20 @@ header .sub{color:#47555d;margin-top:14px;font-size:14px;line-height:1.65}.sub-d
 <section class="source-ledger" id="sourceLedger" aria-labelledby="sourceLedgerHeading"><div class="sectop"><div><div class="module-number">METHODOLOGY / DATA HEALTH</div><h2 id="sourceLedgerHeading">Source freshness</h2><div class="sub">The last successful check is not necessarily the time an election office last counted votes.</div></div></div><div id="sourceLedgerRows" class="source-grid"><div class="source-row">Checking connected sources…</div></div></section>
 
 <div class="sourcebox"><strong>Methodology &amp; sources</strong><p class="sub" style="margin:7px 0">It polls every 60 seconds <strong>while this page remains open</strong> and displays the latest data available from upstream publishers. New candidate totals may arrive less frequently. Replay and Pulse use this browser’s own saved observations; they do not reconstruct earlier returns. Votes counted, precincts reporting, estimated votes counted, and winners called are different measures. A leader is not a winner. Missing states in the official-state feed mean <em>no feed coverage</em>, not zero votes. A race is counted as called only when the results provider identifies a named race-calling source.</p><div class="small"><strong>Sources:</strong> <a href="https://thepeoplestally.com/open-data/" target="_blank" rel="noopener">The People's Tally</a> (CC BY 4.0, public results snapshot; original source on each race); <a href="https://openamerica.io/elections/api/" target="_blank" rel="noopener">Open America</a> (official state election office feeds, currently covers 22 states; no projections). <a href="https://apnews.com/hub/election-2026" target="_blank" rel="noopener">AP elections</a> for a separate national race-call reference. Historical data: <a href="https://www.electionwrld.com/developers" target="_blank" rel="noopener">Election Wrld</a> (CC BY 4.0) using <a href="https://electionlab.mit.edu/data" target="_blank" rel="noopener">MIT Election Data and Science Lab</a> (CC0). 2026 boundary differences are flagged conservatively until verified for an individual district. Source coverage is not exhaustive.</div><div class="small muted" id="sourcesState" style="margin-top:10px">Checking feed connectivity…</div></div>
+
+<section class="civic-section" id="civicapi" aria-labelledby="civicHeading">
+ <div class="civic-head"><div><div class="module-number">DATA DESK / ADDITIONAL SOURCE</div><h2 id="civicHeading">civicAPI source cross-check</h2><div class="sub">Look up another provider's returns for a selected 2026 House, Senate, or governor contest.</div></div><span id="civicHealthBadge" class="status-flag">CONNECTOR NOT CHECKED</span></div>
+ <p class="civic-explainer">This is a <strong>separate source comparison</strong>, not a fifth confirmed live-results feed. We never add one provider's vote totals to another's, automatically replace a sourced call, or count a test race. Browser security settings may prevent direct access to civicAPI; if so, VoteScope keeps the four existing feeds and shows an explicit error. Source: <a href="https://civicapi.org/" target="_blank" rel="noopener">civicAPI</a>.</p>
+ <div class="civic-controls">
+  <label>State<select id="civicState" class="pick" aria-label="State for civicAPI lookup"><option value="">Choose state…</option></select></label>
+  <label>Office<select id="civicOffice" class="pick" aria-label="Office for civicAPI lookup"><option value="H">U.S. House</option><option value="S">U.S. Senate</option><option value="G">Governor</option></select></label>
+  <label>House district<input id="civicDistrict" type="text" inputmode="numeric" placeholder="e.g. 7 (House only)" aria-label="Congressional district number"></label>
+  <button id="civicLookup" type="button" class="btn primary">↻ Check civicAPI</button>
+ </div>
+ <div id="civicResults" class="civic-results" role="status" aria-live="polite">Choose a state and an office, then select <strong>Check civicAPI</strong>. This source does not affect the main results unless explicitly verified and incorporated in a future release.</div>
+ <p id="civicLast" class="civic-note">No results checked. Selected-race checks do not certify a winner, and vote totals from separate sources are never summed.</p>
+</section>
+
 <div class="foot"><span class="foot-mark">VS<span>.</span></span> VoteScope © 2026 Will York · Unofficial results · Refreshing does not accelerate publication by election offices · No polling forecast, probability, or presumed winner is generated.</div>
 </div>
 <div class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Race details"><div class="dialog"><button class="btn x" id="close" aria-label="Close details">✕</button><div id="dialogContent"></div></div></div>
@@ -338,7 +372,7 @@ function margin(r){if(r.cands.length<2||!r.total)return '—';return`${fmt(r.can
 function raceHtml(r,i){const shares=r.total?r.cands.slice(0,6).map(c=>`<span style="width:${Math.max(0,Math.min(100,c.pct??0))}%;background:${c.party==='D'?'var(--blue)':c.party==='R'?'var(--red)':'var(--other)'}"></span>`).join(''):'';return`<button type="button" class="race" data-index="${i}"><div class="racehead"><div><div class="racename">${esc(nameOf(r))}</div><div class="cap">${r.total?fmt(r.total)+' counted votes':'Awaiting returns'}${r.delta?' · <span class="green">+'+fmt(r.delta)+' new</span>':''}</div></div>${badge(r)}</div>${topCandidates(r)||'<div class="muted small" style="padding:7px 0">Candidate returns not yet available from connected feeds</div>'}<div class="minibar">${shares}</div><div class="racefoot"><span>${r.called?'Winner called by '+esc(r.calledBy):r.total?'Current lead '+esc(margin(r)):'No votes reported'}</span><span>${r.pctIn==null?'Reporting % unavailable':r.pctIn.toFixed(1)+'% reported*'}</span></div></button>`}
 function filtered(){const ch=$('chamber').value,st=$('state').value,stt=$('status').value,q=$('search').value.toLowerCase().trim(),sort=$('sort').value;let a=races.filter(r=>(ch==='ALL'||r.office===ch)&&(st==='ALL'||r.state===st)&&(stt==='ALL'||stt==='REPORTING'&&r.total>0||stt==='UNCALLED'&&!r.called||stt==='CALLED'&&r.called)&&(!q||(nameOf(r)+' '+r.cands.map(c=>c.name).join(' ')).toLowerCase().includes(q)));if(sort==='closest')a.sort((x,y)=>(x.cands.length>1&&x.total?(x.cands[0].votes-x.cands[1].votes)/x.total:10)-(y.cands.length>1&&y.total?(y.cands[0].votes-y.cands[1].votes)/y.total:10));else if(sort==='votes')a.sort((x,y)=>y.total-x.total);else if(sort==='state')a.sort((x,y)=>x.state.localeCompare(y.state)||x.office.localeCompare(y.office)||Number(x.district)-Number(y.district));else a.sort((x,y)=>(Date.parse(y.stamp)||0)-(Date.parse(x.stamp)||0)||y.delta-x.delta||y.total-x.total);return a}
 let shown=[];function render(){board('house',435,0,0);board('senate',100,34,31);const a=filtered();shown=a;const g=$('raceGrid');g.innerHTML=a.slice(0,limit).map(raceHtml).join('');$('more').style.display=a.length>limit?'block':'none';const returning=races.filter(r=>r.total>0).length;const called=races.filter(r=>r.called).length;$('raceCount').textContent=`${a.length} matching races · ${returning} with votes in connected feeds · ${called} sourced calls. Feed coverage varies by state.`;if(!a.length){g.innerHTML=`<div class="emptybox" style="grid-column:1/-1"><strong>${races.length?'No races match these filters.':'Waiting for reported election-night results.'}</strong><div style="margin-top:8px">${races.length?'Try a different state or filter.':'When publishers release the first counts, the race list will populate automatically. No votes are invented.'}</div></div>`;}const nd=races.filter(r=>r.delta>0);$('newVotes').textContent=nd.length?`${nd.length} races have additional votes since last check`:'No newly counted votes detected';}
-function showDetail(i){const r=shown[i];if(!r)return;$('dialogContent').innerHTML=`<div class="eyebrow">2026 · Unofficial returns</div><h3>${esc(nameOf(r))}</h3><div style="margin:6px 0 20px">${badge(r)} <span class="muted">${r.total?fmt(r.total)+' votes':'Votes not reported'}</span></div>${topCandidates(r)}<hr style="border:none;border-top:1px solid #294052;margin:20px 0"><p><strong>Current margin:</strong> ${esc(margin(r))}</p><p><strong>Reported progress:</strong> ${r.pctIn==null?'Not supplied':r.pctIn.toFixed(1)+'% (source-defined reporting unit; not necessarily votes counted)'}</p><p><strong>Race status:</strong> ${r.called?'Called by '+esc(r.calledBy):r.total?'A candidate is currently leading; no race call':'No returns received'}</p><p><strong>Source:</strong> ${esc(r.source)}</p><p><strong>Source update:</strong> ${esc(date(r.stamp))}</p><p><a href="${esc(r.srcUrl)}" target="_blank" rel="noopener">Inspect source ↗</a></p><div class="cap">An early lead, or 100% of precincts reported, does not by itself establish a certified result.</div>`;$('detail').classList.add('open')}
+function showDetail(i){const r=shown[i];if(!r)return;$('dialogContent').innerHTML=`<div class="eyebrow">2026 · Unofficial returns</div><h3>${esc(nameOf(r))}</h3><div style="margin:6px 0 20px">${badge(r)} <span class="muted">${r.total?fmt(r.total)+' votes':'Votes not reported'}</span></div>${topCandidates(r)}<hr style="border:none;border-top:1px solid #294052;margin:20px 0"><p><strong>Current margin:</strong> ${esc(margin(r))}</p><p><strong>Reported progress:</strong> ${r.pctIn==null?'Not supplied':r.pctIn.toFixed(1)+'% (source-defined reporting unit; not necessarily votes counted)'}</p><p><strong>Race status:</strong> ${r.called?'Called by '+esc(r.calledBy):r.total?'A candidate is currently leading; no race call':'No returns received'}</p><p><strong>Source:</strong> ${esc(r.source)}</p><p><strong>Source update:</strong> ${esc(date(r.stamp))}</p><p><a href="${esc(r.srcUrl)}" target="_blank" rel="noopener">Inspect source ↗</a></p><div class="cap">An early lead, or 100% of precincts reported, does not by itself establish a certified result.</div>`;$('detail').classList.add('open');civicAddDetailAction(r)}
 const sourceNames=['2026 race roster','The People’s Tally','Open America House','Open America Senate','Open America Governor'];
 const sourceUrls=['https://thepeoplestally.com/data/core.json','https://thepeoplestally.com/data/results.json','https://openamerica.io/elections/results.json?year=2026&office=House','https://openamerica.io/elections/results.json?year=2026&office=Senate','https://openamerica.io/elections/results.json?year=2026&office=Governor'];
 const resultFeedCache=new Map(),sourceHealth=new Map();
@@ -690,6 +724,68 @@ computeDelta=function(rs){_v5computeDelta(rs);recordSnap(rs)};
 const _v5render=render;
 render=function(){_v5render();renderPulseAndReplay()};
 renderPulseAndReplay();renderMatched();updateSourceLedger();
+
+
+/* civicAPI v2 connector: optional race-by-race cross-check. Strict date, geography,
+   test-data and office guards. Never blends data from two different providers. */
+const CIVIC_BASE='https://civicapi.org/api/v2';
+const civicState=$('civicState'),civicOffice=$('civicOffice'),civicDistrict=$('civicDistrict');
+let civicBusy=false,civicLastCheck=null,civicVerifiedCount=0,civicSelectedRequest=null,civicLastSuccess=false;
+Object.entries(STATES).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v;civicState.append(o)});
+function civicEscape(v){return esc(v)}
+function civicPick(...v){return v.find(x=>x!==null&&x!==undefined&&x!=='')}
+function civicObject(x){return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}
+function civicArray(data){if(Array.isArray(data))return data;for(const candidate of [data?.results,data?.races,data?.data?.races,data?.data?.results,data?.data?.items,data?.items,data?.data])if(Array.isArray(candidate))return candidate;return []}
+function civicBoolFlag(x){return x===true||x===1||['true','yes','test','1'].includes(String(x??'').toLowerCase())}
+function civicTestFlag(x){return ['test_data','testData','test','testdata','is_test','isTest','is_test_data','mock_data'].some(k=>civicBoolFlag(x?.[k]))}
+function civicId(x){const v=civicPick(x.raceid,x.race_id,x.raceId,x.id);return /^\d+$/.test(String(v??''))?String(v):null}
+function civicTitle(x){return clean(civicPick(x.race_name,x.racename,x.name,x.title,x.office_name,x.office,x.election_name,x.electionName)).trim()}
+function civicDateMatch(x){const d=civicPick(x.election_date,x.electionDate,x.date,x.election?.date);return !d||String(d).slice(0,10)==='2026-11-03'}
+function civicStateMatch(x,st){const code=String(civicPick(x.province,x.state_code,x.state,x.statePostal,x.jurisdiction?.state,'')||'').toUpperCase().trim();return !code||code===st||code===STATES[st].toUpperCase()||code==='US-'+st}
+function civicOfficeMatch(x,off){const label=[civicTitle(x),x.office,x.office_name,x.election_type,x.race_type].map(clean).join(' ').toLowerCase();if(off==='H')return /\b(house|congress|representatives|u\.s\. rep)\b/.test(label)&&!/state house|state assembly|house of delegates|provincial/.test(label);if(off==='S')return /\bsenat(e|or)\b/.test(label)&&!/state senate/.test(label);return /\bgovernor\b/.test(label)}
+function civicDistrictMatch(x,off,dist){if(off!=='H')return true;const value=civicPick(x.district_number,x.districtNumber,x.congressional_district,x.district);const s=String(value??'').trim();const label=civicTitle(x);const m=label.match(/(?:district|\bdist\.?|\bcd)\s*(\d{1,2}|at[- ]large)/i);const candidate=s||m?.[1]||'';const d=String(dist||'').trim();if(!d)return true;if(!candidate)return false;return Number(candidate)===Number(d)||(/at.large/i.test(candidate)&&['0','00','al'].includes(d.toLowerCase()))}
+function civicCandidates(obj){const root=civicObject(obj?.race||obj?.data||obj);const source=civicPick(root.candidates,root.candidate_results,root.candidateResults,root.results);if(!Array.isArray(source))return [];
+ const items=source.map(v=>{const c=civicObject(v);const raw=civicPick(c.votes,c.vote_count,c.voteCount,c.total_votes,c.totalVotes,c.result?.votes,c.result?.voteCount);if(raw===undefined||raw===null||!Number.isFinite(Number(raw))||Number(raw)<0)return null;const candidate=civicObject(c.candidate);const nm=clean(civicPick(c.name,c.candidate_name,c.full_name,candidate.name,candidate.full_name)).trim();return nm?{name:nm,party:normParty(civicPick(c.party,candidate.party)),votes:Number(raw)}:null}).filter(Boolean);
+ return items.sort((a,b)=>b.votes-a.votes)}
+async function civicFetchJson(path){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),9000);try{const r=await fetch(CIVIC_BASE+path,{cache:'no-store',credentials:'omit',signal:controller.signal,headers:{Accept:'application/json'}});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(timeout)}}
+function civicBadge(t){$('civicHealthBadge').textContent=t}
+function civicStatus(html){$('civicResults').innerHTML=html}
+function civicAddDetailAction(r){const container=$('dialogContent');if(!container)return;const el=document.createElement('button');el.className='btn';el.type='button';el.style.marginTop='16px';el.textContent='Cross-check this race with civicAPI';el.addEventListener('click',()=>{civicState.value=r.state;civicOffice.value=r.office;civicDistrict.value=r.office==='H'?(r.district==='00'?'0':String(Number(r.district))):'';$('detail').classList.remove('open');$('civicapi').scrollIntoView({behavior:'smooth',block:'start'});civicLookUp()});container.append(el)}
+async function civicLookUp(){
+ if(civicBusy)return;const st=civicState.value,off=civicOffice.value,dist=civicDistrict.value.trim();
+ if(!st){civicStatus('Choose a state first.');return}
+ if(off==='H'&&dist&&!(dist.toLowerCase()==='al'||(/^\d{1,2}$/.test(dist)&&Number(dist)>=0&&Number(dist)<=53))){civicStatus('Enter a valid congressional district number or leave it blank to browse the state.');return}
+ civicSelectedRequest={st,off,dist};civicBusy=true;$('civicLookup').disabled=true;civicBadge('CHECKING civicAPI…');civicStatus('Searching civicAPI for November 3, 2026 contests…');
+ const qs=new URLSearchParams({country:'US',province:st,startDate:'2026-11-03',endDate:'2026-11-03',query:off==='H'?'House':off==='S'?'Senate':'Governor',limit:'600'});
+ try{
+  const result=await civicFetchJson('/race/search?'+qs.toString());
+  if(civicTestFlag(result))throw Error('Provider returned test data; rejected');
+  const found=civicArray(result);
+  if(!Array.isArray(found)||!found.length){civicBadge('NO MATCHING DATA');civicStatus('The search returned no supported contests. This does not mean no votes have been counted. Check the <a href="https://civicapi.org/results" target="_blank" rel="noopener">civicAPI results directory</a>.');return}
+  const match=found.filter(x=>x&&typeof x==='object'&&!civicTestFlag(x)&&civicDateMatch(x)&&civicStateMatch(x,st)&&civicOfficeMatch(x,off)&&civicDistrictMatch(x,off,dist));
+  const ids=match.map(x=>({id:civicId(x),meta:x})).filter(x=>x.id).slice(0,Math.min(off==='H'&&!dist?8:3,match.length));
+  if(!ids.length){civicBadge('NO VERIFIED MATCH');civicStatus(`${fmt(found.length)} search entries examined, but no suitable, non-test ${off==='H'?'U.S. House':off==='S'?'U.S. Senate':'governor'} race was identified for ${civicEscape(STATES[st])}${dist?' district '+civicEscape(dist):''}. Nothing was merged into VoteScope. <a href="https://civicapi.org/results" target="_blank" rel="noopener">Check civicAPI directly</a>.`);return}
+  const details=await Promise.allSettled(ids.map(x=>civicFetchJson('/race/'+encodeURIComponent(x.id)+'?light')));
+  let valid=[];
+  details.forEach((rec,i)=>{if(rec.status!=='fulfilled')return;const raw=rec.value,container=civicObject(raw?.race||raw?.data||raw),meta=ids[i].meta;
+   if(civicTestFlag(raw)||civicTestFlag(container)||!civicDateMatch(container)||!civicStateMatch(container,st))return;
+   const cs=civicCandidates(raw);if(!cs.length)return;
+   const title=civicTitle(meta)||civicTitle(container);const stamp=civicPick(container.updated_at,container.last_updated,container.lastUpdated,container.as_of,raw?.updated_at,raw?.last_updated);
+   valid.push({id:ids[i].id,title,cs,stamp:stamp||null});
+  });
+  if(!valid.length){civicBadge('INSUFFICIENT DATA');civicStatus(`Located ${ids.length} potential race identifier(s), but none supplied a validated, non-test candidate vote count in a recognizable format. No totals or calls were added. <a href="https://civicapi.org/results" target="_blank" rel="noopener">View civicAPI's results</a>.`);return}
+  civicVerifiedCount=valid.length;civicLastSuccess=true;civicBadge('DATA RETRIEVED');
+  civicStatus(`<strong>${valid.length} civicAPI race${valid.length===1?'':'s'} with candidate totals</strong><div class="civic-note">This is a side-by-side verification source, not an additional vote batch. Do not add these counts to VoteScope's other feed totals. Source updates are displayed when supplied.</div>${valid.map(r=>`<div class="civic-race"><strong>${civicEscape(r.title||STATES[st]+' '+(off==='H'?'House':off==='S'?'Senate':'Governor'))}</strong><div class="civic-candidates">${r.cs.slice(0,6).map(c=>`<span>${civicEscape(c.name)} (${civicEscape(c.party)})</span><span>${fmt(c.votes)}</span>`).join('')}</div><small>Provider timestamp: ${r.stamp?civicEscape(date(r.stamp)):'not supplied'}</small> · <a href="${CIVIC_BASE}/race/${r.id}" target="_blank" rel="noopener">View source ↗</a></div>`).join('')}`);
+ }catch(err){civicLastSuccess=false;civicBadge('BROWSER CONNECTION UNAVAILABLE');civicStatus('VoteScope could not read civicAPI from this browser. Its API may prohibit cross-site requests (CORS), or the service may be temporarily unavailable. <strong>Your existing four results feeds remain unchanged.</strong> <a href="https://civicapi.org/results" target="_blank" rel="noopener">Open civicAPI results directly ↗</a>');}
+ finally{civicBusy=false;civicLastCheck=Date.now();$('civicLookup').disabled=false;$('civicLast').textContent=`civicAPI cross-check: ${date(civicLastCheck)} · ${civicVerifiedCount} validated race record(s) in the most recent successful check. Source results are never automatically merged.`;}
+}
+civicOffice.addEventListener('change',()=>{civicDistrict.disabled=civicOffice.value!=='H';if(civicDistrict.disabled)civicDistrict.value=''});
+$('civicLookup').addEventListener('click',civicLookUp);
+/* If a user has opted into a source comparison, re-check periodically while
+   the dashboard remains unpaused. Uses the existing visible refresh cadence,
+   with no high-frequency polling against a free API. */
+let civicAutoAt=0;
+setInterval(()=>{if(paused||!civicSelectedRequest||civicBusy||Date.now()-civicAutoAt<180000)return;civicAutoAt=Date.now();civicLookUp()},60000);
 
 setInterval(tick,500);render();update();
 })();
