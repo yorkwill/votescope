@@ -1,0 +1,96 @@
+name: VoteScope named-source race calls
+
+on:
+  schedule:
+    - cron: '3/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: votescope-race-calls
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check out VoteScope
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - name: Switch to public race-call data branch
+        shell: bash
+        run: |
+          git fetch origin '+refs/heads/votescope-calls:refs/remotes/origin/votescope-calls' || true
+          if git show-ref --verify --quiet refs/remotes/origin/votescope-calls; then
+            git switch -C votescope-calls origin/votescope-calls
+          else
+            git switch -c votescope-calls
+          fi
+      - name: Read named-source calls and write compact snapshot
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          import datetime as dt, json, re, urllib.request
+          from pathlib import Path
+
+          source = 'https://thepeoplestally.com/api/live'
+          req = urllib.request.Request(source, headers={'Accept':'application/json', 'User-Agent':'VoteScope/11.1 public race-call relay (github.com/yorkwill/votescope)'})
+          with urllib.request.urlopen(req, timeout=25) as response:
+              if response.status != 200: raise RuntimeError('Upstream returned '+str(response.status))
+              data = json.load(response)
+          if not isinstance(data, dict) or data.get('test_data') or not isinstance(data.get('res'), dict):
+              raise ValueError('Unexpected or test live-results document; keeping previous snapshot')
+          if not isinstance(data.get('at'), str) or not data['at'].startswith('2026-11-'):
+              raise ValueError('Invalid 2026 election timestamp; keeping previous snapshot')
+          if len(data['res']) < 1:
+              raise ValueError('No upstream state data; keeping previous snapshot')
+
+          good_sources = {'ap', 'ap news', 'associated press', 'nbc news', 'cbs news', 'abc news', 'cnn', 'fox news', 'ddhq', 'decision desk hq', 'certified results', 'state certification'}
+          result = {}
+          for st, state in data['res'].items():
+              if not re.fullmatch(r'[A-Z]{2}', st) or not isinstance(state, dict) or state.get('test_data'):
+                  continue
+              races = {}
+              for key, item in state.get('races', {}).items():
+                  if not isinstance(item, dict) or item.get('test_data') or item.get('test'):
+                      continue
+                  if not re.fullmatch(r'(H-'+st+r'-(?:\d\d|AL)|S-'+st+r'(?:-sp)?)', key):
+                      continue
+                  source_name = str(item.get('called_by') or '').strip()
+                  winner = str(item.get('winner_name') or '').strip()
+                  if source_name.lower() not in good_sources or not winner or str(item.get('status', '')).lower() not in {'called', 'certified', 'final'}:
+                      continue
+                  def norm(s):
+                      return re.sub(r'[^a-z0-9]', '', s.lower())
+                  candnames = [str(c[0]) for c in item.get('cands', []) if isinstance(c, list) and c and isinstance(c[0], str)]
+                  if candnames and sum(norm(n)==norm(winner) for n in candnames)!=1:
+                      continue
+                  link = item.get('call_url') or item.get('url') or state.get('url') or 'https://thepeoplestally.com/open-data/'
+                  if not isinstance(link, str) or not link.startswith('https://'): link='https://thepeoplestally.com/open-data/'
+                  races[key] = {'status':'called','winner_name':winner,'called_by':source_name,'call_url':link,'asof': item.get('asof') or state.get('asOf') or data['at']}
+              if races:
+                  result[st] = {'url':state.get('url') or 'https://thepeoplestally.com/open-data/','races':races}
+          output = {'at':data['at'], 'res':result, 'origin':'The People\'s Tally /api/live', 'relay_checked_at':dt.datetime.now(dt.timezone.utc).isoformat(), 'count':sum(len(v['races']) for v in result.values())}
+          dest = Path('data/calls.json'); dest.parent.mkdir(exist_ok=True)
+          dest.write_text(json.dumps(output,separators=(',',':'))+'\n',encoding='utf-8')
+          print('Valid named-source calls:',output['count'])
+          PYCODE
+      - name: Publish public JSON to votescope-calls branch
+        shell: bash
+        run: |
+          git config user.name 'VoteScope data bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/calls.json
+          if git diff --cached --quiet; then
+            echo 'No change'
+          else
+            git commit -m 'Refresh attributed election calls'
+            git push origin HEAD:refs/heads/votescope-calls
+          fi
